@@ -137,27 +137,34 @@ function plotShapes() {
 let currentLCD = null; // Variable to store the current LCD element
 
 function addLCD() {
-    const lcdX = document.getElementById('lcdX').value;
-    const lcdY = document.getElementById('lcdY').value;
+    const lcdXInput = document.getElementById('lcdX');
+    const lcdYInput = document.getElementById('lcdY');
+    const zoomFactorInput = document.getElementById('zoomFactor');
 
-    // Validation: Ensure X and Y positions are filled
-    if (!lcdX || !lcdY) {
-        alert('Please fill out X and Y positions.');
+    // Validate inputs
+    const lcdX = parseFloat(lcdXInput.value);
+    const lcdY = parseFloat(lcdYInput.value);
+    if (isNaN(lcdX) || isNaN(lcdY)) {
+        alert('Please enter valid numeric values for X and Y positions.');
         return;
     }
 
-    // Convert X and Y positions to integers and multiply by zoom factor
-    const zoomFactor = parseFloat(document.getElementById('zoomFactor').value) || 1;
+    // Get zoom factor
+    const zoomFactor = parseFloat(zoomFactorInput.value) || 1;
+
+    // Calculate scaled positions
     const scaledX = Math.round(lcdX * zoomFactor);
-    const scaledY = Math.round(lcdY * zoomFactor);
+    const canvasHeight = document.getElementById('canvas').clientHeight;
+    const scaledY = Math.round(canvasHeight - (lcdY * zoomFactor)); // Calculate Y from bottom-left
 
     // Create LCD element
     const LCD = document.createElement('div');
     LCD.className = 'shape LCD';
     LCD.style.width = (25 * zoomFactor) + 'px'; // Fixed width of 25px scaled by zoom
     LCD.style.height = (20 * zoomFactor) + 'px'; // Fixed height of 20px scaled by zoom
+    LCD.style.position = 'absolute'; // Positioning relative to the canvas
     LCD.style.left = scaledX + 'px';
-    LCD.style.top = scaledY + 'px';
+    LCD.style.top = scaledY + 'px'; // Position from bottom
     LCD.innerHTML = '<span>LCD</span>';
 
     // Replace current LCD if it exists
