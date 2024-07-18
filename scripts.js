@@ -1,8 +1,8 @@
 let shapeLabels = [
-  "Up",
-  "Down",
-  "Left",
-  "Right",
+  "UP",
+  "DOWN",
+  "LEFT",
+  "RIGHT",
   "A",
   "B",
   "X",
@@ -28,8 +28,8 @@ function createShapeInput(index) {
                 <div class="form-group">
                     <label for="shape${index}">Shape:</label>
                     <select class="form-control" id="shape${index}" name="shape${index}" onchange="toggleDiameter(${index})" required>
-                        <option value="square">Key</option>
-                        <option value="circle">Button</option>
+                        <option value="key">Key</option>
+                        <option value="button">Button</option>
                     </select>
                 </div>
                 <div class="form-row">
@@ -68,7 +68,7 @@ function toggleDiameter(index) {
     .parentNode.parentNode;
   const diameterGroup = document.getElementById(`diameterGroup${index}`);
 
-  if (shape === "circle") {
+  if (shape === "button") {
     widthHeightGroup.style.display = "none";
     diameterGroup.style.display = "block";
   } else {
@@ -118,13 +118,13 @@ function plotShapes() {
     let shapeElement = document.createElement("div");
     shapeElement.className = "shape " + shape;
 
-    if (shape === "circle") {
+    if (shape === "button") {
       let diameter = document.getElementById(`diameter${i}`).value;
       diameter = parseInt(diameter) * zoomFactor;
       shapeElement.style.width = diameter + "px";
       shapeElement.style.height = diameter + "px";
-      x -= diameter / 2; // Center x position for circle
-      y = baseHeight * zoomFactor - y - diameter / 2; // Center y position for circle
+      x -= diameter / 2; // Center x position for button
+      y = baseHeight * zoomFactor - y - diameter / 2; // Center y position for button
     } else {
       let width = document.getElementById(`width${i}`).value;
       let height = document.getElementById(`height${i}`).value;
@@ -193,6 +193,8 @@ function addLCD() {
 
   // Set new LCD as the current LCD
   currentLCD = LCD;
+  currentLCD.x = lcdX;
+  currentLCD.y = lcdY;
 
   // Add LCD to canvas
   const canvas = document.getElementById("canvas");
@@ -225,7 +227,6 @@ function addUSB() {
   arrowElement.style.left = leftPosition + "px"; // Set left position
 
   // Calculate top position considering zoom
-  const arrowHeight = 20; // Adjust this value based on your arrow's height
   const topPosition = usbY * zoomFactor; // Place arrow at top edge
 
   arrowElement.style.top = topPosition + "px";
@@ -234,6 +235,8 @@ function addUSB() {
   const labelText = document.createElement("span");
   labelText.textContent = "USB";
   arrowElement.appendChild(labelText);
+  arrowElement.x = usbX;
+  arrowElement.y = usbY;
 
   // Append the arrow to the canvas or container where you want to display it
   const canvas = document.getElementById("canvas");
@@ -243,42 +246,83 @@ function addUSB() {
 function saveConfigurationToJson() {
   // Gather all variables
   let configuration = {
-    baseWidth: baseWidth,
-    baseHeight: baseHeight,
-    zoomFactor: zoomFactor,
-    shapeInputs: [],
+    buttons: {},
+    keys: {},
+  };
+
+  configuration.base = {
+    height: 50,
+    width: baseWidth,
+    length: baseHeight,
+    thickness: 4,
+    bevel: true,
+    screw_diameter: 0,
   };
 
   // Iterate over shape inputs
   for (let i = 0; i < shapeLabels.length; i++) {
-    let shapeInput = {
-      label: shapeLabels[i],
-      shape: document.getElementById(`shape${i}`).value,
-      width: document.getElementById(`width${i}`).value,
-      height: document.getElementById(`height${i}`).value,
-      diameter: document.getElementById(`diameter${i}`).value,
-      x: document.getElementById(`x${i}`).value,
-      y: document.getElementById(`y${i}`).value,
-    };
-    configuration.shapeInputs.push(shapeInput);
+    if (document.getElementById(`shape${i}`).value === "button") {
+      configuration.buttons[shapeLabels[i]] = {
+        x: document.getElementById(`x${i}`).value,
+        y: document.getElementById(`y${i}`).value,
+        diameter: document.getElementById(`diameter${i}`).value,
+        thickness: 2,
+        bevel: true,
+        mount: {
+          type: "MX",
+          height: 4.0,
+          diameter: 6.0,
+          X_point_width: 4.2,
+          X_point_length: 1.4,
+        },
+        wall: {
+          thickness: 1.0,
+          height: 1.0,
+        },
+      };
+    } else {
+      configuration.keys[shapeLabels[i]] = {
+        x: document.getElementById(`x${i}`).value,
+        y: document.getElementById(`y${i}`).value,
+        bevel: true,
+        mount: {
+          type: "MX",
+          height: 7.0,
+          diameter: 6.0,
+          X_point_width: 4.2,
+          X_point_length: 1.4,
+        },
+        units: {
+          top: 12,
+          base: 18,
+        },
+        dimensions: {
+          width: document.getElementById(`width${i}`).value / 12,
+          length: document.getElementById(`height${i}`).value / 18,
+          wall_height: 8,
+          thickness: 1,
+        },
+      };
+    }
   }
 
   // LCD configuration
   if (currentLCD) {
-    let lcdConfig = {
-      x: currentLCD.style.left.replace("px", ""),
-      y: currentLCD.style.top.replace("px", ""),
+    configuration.base["lcd_screen"] = {};
+    configuration.base.lcd_screen = {
+      x: currentLCD.x,
+      y: currentLCD.y,
+      rounded: true,
     };
-    configuration.lcd = lcdConfig;
   }
-
   // USB configuration
   if (arrowElement) {
-    let usbConfig = {
-      x: arrowElement.style.left.replace("px", ""),
-      y: arrowElement.style.top.replace("px", ""),
+    configuration.base["usb_c"] = {};
+    configuration.base["usb_c"]["location"] = {
+      x: arrowElement.x,
+      y: arrowElement.y,
+      z: 25,
     };
-    configuration.usb = usbConfig;
   }
 
   // Convert to JSON string

@@ -1,167 +1,168 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+<head>
+    <meta charset="UTF-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
     <title>ControllerForge Visualiser</title>
     <!-- Bootstrap CSS -->
     <link
-      href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
-      rel="stylesheet"
+            href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+            rel="stylesheet"
     />
-    <link href="styles.css" rel="stylesheet" />
+    <link href="styles.css" rel="stylesheet"/>
     <script src="scripts.js"></script>
-  </head>
-  <body>
-    <div class="container">
-      <h1 class="text-center my-4">ControllerForge Visualiser</h1>
-      <form id="shapeForm">
+</head>
+<body>
+<div class="container">
+    <h1 class="text-center my-4">ControllerForge Visualiser</h1>
+    <form id="shapeForm">
         <h2 class="text-center my-4">Buttons and Keys</h2>
         <div class="row" id="formContainer">
-          <!-- Shape input fields will be added here dynamically -->
+            <!-- Shape input fields will be added here dynamically -->
         </div>
         <div class="text-center">
-          <button class="btn btn-primary" onclick="plotShapes()" type="button">
-            Plot Buttons
-          </button>
+            <button class="btn btn-primary" onclick="plotShapes()" type="button">
+                Plot Buttons
+            </button>
         </div>
-      </form>
-      <hr />
-      <div class="row">
+    </form>
+    <hr/>
+    <div class="row">
         <div class="row">
-          <div class="col-md-6">
-            <!-- LCD Form with border -->
-            <div class="border rounded p-3">
-              <h2 class="text-center my-4">LCD Component</h2>
-              <form id="LCDForm">
-                <div class="form-group">
-                  <label for="lcdX">X Position:</label>
-                  <input
-                    class="form-control"
-                    id="lcdX"
-                    name="lcdX"
-                    placeholder="mm"
-                    required
-                    type="number"
-                  />
+            <div class="col-md-6">
+                <!-- LCD Form with border -->
+                <div class="border rounded p-3">
+                    <h2 class="text-center my-4">LCD Screen</h2>
+                    <form id="LCDForm">
+                        <div class="form-group">
+                            <label for="lcdX">X Position:</label>
+                            <input
+                                    class="form-control"
+                                    id="lcdX"
+                                    name="lcdX"
+                                    placeholder="mm"
+                                    required
+                                    type="number"
+                            />
+                        </div>
+                        <div class="form-group">
+                            <label for="lcdY">Y Position:</label>
+                            <input
+                                    class="form-control"
+                                    id="lcdY"
+                                    name="lcdY"
+                                    placeholder="mm"
+                                    required
+                                    type="number"
+                            />
+                        </div>
+                        <button
+                                class="btn btn-primary mb-2"
+                                onclick="addLCD()"
+                                type="button"
+                        >
+                            Add LCD
+                        </button>
+                    </form>
                 </div>
-                <div class="form-group">
-                  <label for="lcdY">Y Position:</label>
-                  <input
-                    class="form-control"
-                    id="lcdY"
-                    name="lcdY"
-                    placeholder="mm"
-                    required
-                    type="number"
-                  />
-                </div>
-                <button
-                  class="btn btn-primary mb-2"
-                  onclick="addLCD()"
-                  type="button"
-                >
-                  Add LCD
-                </button>
-              </form>
             </div>
-          </div>
-          <div class="col-md-6">
-            <!-- USB Form with border -->
-            <div class="border rounded p-3">
-              <h2 class="text-center my-4">USB Port</h2>
-              <form id="USBForm">
-                <div class="form-group">
-                  <label for="usbX">X Position:</label>
-                  <input
-                    class="form-control"
-                    id="usbX"
-                    name="usbX"
-                    placeholder="mm"
-                    required
-                    type="number"
-                  />
+            <div class="col-md-6">
+                <!-- USB Form with border -->
+                <div class="border rounded p-3">
+                    <h2 class="text-center my-4">USB Port</h2>
+                    <form id="USBForm">
+                        <div class="form-group">
+                            <label for="usbX">X Position:</label>
+                            <input
+                                    class="form-control"
+                                    id="usbX"
+                                    name="usbX"
+                                    placeholder="mm"
+                                    required
+                                    type="number"
+                            />
+                        </div>
+                        <div class="form-group">
+                            <label for="usbY">Y Position:</label>
+                            <input
+                                    class="form-control"
+                                    id="usbY"
+                                    name="usbY"
+                                    placeholder="mm"
+                                    required
+                                    type="number"
+                            />
+                        </div>
+                        <button
+                                class="btn btn-primary mb-2"
+                                onclick="addUSB()"
+                                type="button"
+                        >
+                            Add USB Port
+                        </button>
+                    </form>
                 </div>
-                <div class="form-group">
-                  <label for="usbY">Y Position:</label>
-                  <input
-                    class="form-control"
-                    id="usbY"
-                    name="usbY"
-                    placeholder="mm"
-                    required
-                    type="number"
-                  />
-                </div>
-                <button
-                  class="btn btn-primary mb-2"
-                  onclick="addUSB()"
-                  type="button"
-                >
-                  Add USB Port
-                </button>
-              </form>
             </div>
-          </div>
         </div>
-      </div>
-      <hr />
-      <h2 class="text-center my-4">Base Size</h2>
-      <form class="form-inline" id="baseSizeForm">
-        <div class="form-group mx-sm-3 mb-2">
-          <label class="mr-2" for="baseWidth">Base Width:</label>
-          <input
-            class="form-control"
-            id="baseWidth"
-            placeholder="Canvas base width (mm)"
-            type="number"
-            value="215"
-          />
-        </div>
-        <div class="form-group mx-sm-3 mb-2">
-          <label class="mr-2" for="baseHeight">Base Height:</label>
-          <input
-            class="form-control"
-            id="baseHeight"
-            placeholder="Canvas base height (mm)"
-            type="number"
-            value="120"
-          />
-        </div>
-        <div class="form-group mx-sm-3 mb-2">
-          <label class="mr-2" for="zoomFactor">Zoom Factor:</label>
-          <input
-            class="form-control"
-            id="zoomFactor"
-            placeholder="Zoom factor"
-            type="number"
-            value="1"
-          />
-        </div>
-        <button
-          class="btn btn-primary mb-2"
-          onclick="applyBaseSizeAndZoom()"
-          type="button"
-        >
-          Apply Base Size & Zoom
-        </button>
-      </form>
-      <!-- Save Configuration Button -->
-      <div class="text-center mt-4">
-        <button
-          class="btn btn-success"
-          onclick="saveConfiguration()"
-          type="button"
-        >
-          Save Configuration
-        </button>
-      </div>
-      <div class="mt-4 mx-auto" id="canvas"></div>
     </div>
+    <hr/>
+    <h2 class="text-center my-4">Base Size</h2>
+    <form class="form-inline" id="baseSizeForm">
+        <div class="form-group mx-sm-3 mb-2">
+            <label class="mr-2" for="baseWidth">Base Width:</label>
+            <input
+                    class="form-control"
+                    id="baseWidth"
+                    placeholder="Canvas base width (mm)"
+                    type="number"
+                    value="215"
+            />
+        </div>
+        <div class="form-group mx-sm-3 mb-2">
+            <label class="mr-2" for="baseHeight">Base Height:</label>
+            <input
+                    class="form-control"
+                    id="baseHeight"
+                    placeholder="Canvas base height (mm)"
+                    type="number"
+                    value="120"
+            />
+        </div>
+        <div class="form-group mx-sm-3 mb-2">
+            <label class="mr-2" for="zoomFactor">Zoom Factor:</label>
+            <input
+                    class="form-control"
+                    id="zoomFactor"
+                    placeholder="Zoom factor"
+                    type="number"
+                    value="1"
+            />
+        </div>
+        <button
+                class="btn btn-primary mb-2"
+                onclick="applyBaseSizeAndZoom()"
+                type="button"
+        >
+            Apply Base Size & Zoom
+        </button>
+    </form>
+    <!-- Save Configuration Button -->
+    <div class="text-center mt-4">
+        <button
+                class="btn btn-success"
+                onclick="saveConfiguration()"
+                type="button"
+        >
+            Save Configuration
+        </button>
+    </div>
+    <input accept=".json" id="jsonFileInput" type="file">
+    <div class="mt-4 mx-auto" id="canvas"></div>
+</div>
 
-    <!-- Bootstrap JS and dependencies -->
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-  </body>
+<!-- Bootstrap JS and dependencies -->
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
 </html>
