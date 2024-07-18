@@ -90,7 +90,8 @@ function applyBaseSizeAndZoom() {
 
 function plotShapes() {
     const canvas = document.getElementById('canvas');
-    const canvasHeight = canvas.offsetHeight;
+    const baseHeight = canvas.offsetHeight; // Assuming baseHeight is defined somewhere
+    const zoomFactor = parseFloat(document.getElementById('zoomFactor').value) || 1;
     canvas.innerHTML = '';  // Clear the canvas
 
     for (let i = 0; i < shapeLabels.length; i++) {
@@ -112,7 +113,7 @@ function plotShapes() {
             diameter = parseInt(diameter) * zoomFactor;
             shapeElement.style.width = diameter + 'px';
             shapeElement.style.height = diameter + 'px';
-            y = baseHeight * zoomFactor - y - diameter;
+            y = baseHeight * zoomFactor - y - diameter / 2; // Center y position for circle
         } else {
             let width = document.getElementById(`width${i}`).value;
             let height = document.getElementById(`height${i}`).value;
@@ -120,8 +121,10 @@ function plotShapes() {
             height = parseInt(height) * zoomFactor;
             shapeElement.style.width = width + 'px';
             shapeElement.style.height = height + 'px';
-            y = baseHeight * zoomFactor - y - height;
+            y = baseHeight * zoomFactor - y - height / 2; // Center y position for rectangle or other shapes
         }
+
+        x -= shapeElement.offsetWidth / 2; // Adjust x to center the shape horizontally
 
         shapeElement.style.left = x + 'px';
         shapeElement.style.top = y + 'px';
