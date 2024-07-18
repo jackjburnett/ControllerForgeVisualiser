@@ -153,23 +153,27 @@ function addLCD() {
     const zoomFactor = parseFloat(zoomFactorInput.value) || 1;
 
     // Calculate scaled positions
-    const scaledX = Math.round(lcdX * zoomFactor);
+    const lcdWidth = 25 * zoomFactor; // LCD element width
+    const lcdHeight = 20 * zoomFactor; // LCD element height
+
+    // Calculate position relative to LCD middle
+    const scaledX = Math.round(lcdX * zoomFactor - lcdWidth / 2);
     const canvasHeight = document.getElementById('canvas').clientHeight;
-    const scaledY = Math.round(canvasHeight - (lcdY * zoomFactor)); // Calculate Y from bottom-left
+    const scaledY = Math.round(canvasHeight - (lcdY * zoomFactor + lcdHeight / 2)); // Calculate Y from bottom-middle
 
     // Create LCD element
     const LCD = document.createElement('div');
     LCD.className = 'shape LCD';
-    LCD.style.width = (25 * zoomFactor) + 'px'; // Fixed width of 25px scaled by zoom
-    LCD.style.height = (20 * zoomFactor) + 'px'; // Fixed height of 20px scaled by zoom
-    LCD.style.position = 'absolute'; // Positioning relative to the canvas
+    LCD.style.width = lcdWidth + 'px';
+    LCD.style.height = lcdHeight + 'px';
+    LCD.style.position = 'absolute';
     LCD.style.left = scaledX + 'px';
-    LCD.style.top = scaledY + 'px'; // Position from bottom
+    LCD.style.top = scaledY + 'px';
     LCD.innerHTML = '<span>LCD</span>';
 
     // Replace current LCD if it exists
     if (currentLCD) {
-        currentLCD.remove(); // Remove current LCD from canvas
+        currentLCD.remove();
     }
 
     // Set new LCD as the current LCD
