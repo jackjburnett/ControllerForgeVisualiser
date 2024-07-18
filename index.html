@@ -10,9 +10,9 @@
         #canvas {
             border: 1px solid #000;
             position: relative;
-            width: 100%;
+            width: 215px;
             max-width: 1200px;
-            height: 600px;
+            height: 120px;
             margin-top: 20px;
         }
         .shape {
@@ -46,11 +46,11 @@
     <form id="baseSizeForm" class="form-inline">
         <div class="form-group mx-sm-3 mb-2">
             <label for="baseWidth" class="mr-2">Base Width:</label>
-            <input type="number" class="form-control" id="baseWidth" placeholder="Canvas base width" value="800">
+            <input type="number" class="form-control" id="baseWidth" placeholder="Canvas base width (mm)" value="215">
         </div>
         <div class="form-group mx-sm-3 mb-2">
             <label for="baseHeight" class="mr-2">Base Height:</label>
-            <input type="number" class="form-control" id="baseHeight" placeholder="Canvas base height" value="600">
+            <input type="number" class="form-control" id="baseHeight" placeholder="Canvas base height (mm)" value="120">
         </div>
         <div class="form-group mx-sm-3 mb-2">
             <label for="zoomFactor" class="mr-2">Zoom Factor:</label>
@@ -74,8 +74,8 @@
     ];
 
     let zoomFactor = 1;
-    let baseWidth = 800; // Default base width
-    let baseHeight = 600; // Default base height
+    let baseWidth = 215; // Default base width
+    let baseHeight = 120; // Default base height
 
     function createShapeInput(index) {
         const label = shapeLabels[index];
@@ -88,32 +88,32 @@
                 <div class="form-group">
                     <label for="shape${index}">Shape:</label>
                     <select class="form-control" id="shape${index}" name="shape${index}" onchange="toggleDiameter(${index})" required>
-                        <option value="square">Keys</option>
+                        <option value="square">Key</option>
                         <option value="circle">Button</option>
                     </select>
                 </div>
                 <div class="form-group row">
-                    <div class="col">
+                    <div class="col-6">
                         <label for="width${index}" id="widthLabel${index}">Width:</label>
-                        <input type="number" class="form-control" id="width${index}" name="width${index}" required>
+                        <input type="number" class="form-control" id="width${index}" name="width${index}" placeholder="mm" required>
                     </div>
-                    <div class="col">
+                    <div class="col-6">
                         <label for="height${index}" id="heightLabel${index}">Height:</label>
-                        <input type="number" class="form-control" id="height${index}" name="height${index}" required>
+                        <input type="number" class="form-control" id="height${index}" name="height${index}" placeholder="mm" required>
                     </div>
                 </div>
                 <div class="form-group" id="diameterGroup${index}" style="display:none;">
                     <label for="diameter${index}" id="diameterLabel${index}">Diameter:</label>
-                    <input type="number" class="form-control" id="diameter${index}" name="diameter${index}">
+                    <input type="number" class="form-control" id="diameter${index}" name="diameter${index}" placeholder="mm">
                 </div>
                 <div class="form-row">
                     <div class="form-group col-md-6">
                         <label for="x${index}">X Position:</label>
-                        <input type="number" class="form-control" id="x${index}" name="x${index}">
+                        <input type="number" class="form-control" id="x${index}" name="x${index}" placeholder="mm">
                     </div>
                     <div class="form-group col-md-6">
                         <label for="y${index}">Y Position:</label>
-                        <input type="number" class="form-control" id="y${index}" name="y${index}">
+                        <input type="number" class="form-control" id="y${index}" name="y${index}" placeholder="mm">
                     </div>
                 </div>
             </div>
@@ -125,7 +125,7 @@
 
     function toggleDiameter(index) {
         const shape = document.getElementById(`shape${index}`).value;
-        const widthHeightGroup = document.getElementById(`widthHeightGroup${index}`);
+        const widthHeightGroup = document.getElementById(`widthLabel${index}`).parentNode.parentNode;
         const diameterGroup = document.getElementById(`diameterGroup${index}`);
 
         if (shape === 'circle') {
