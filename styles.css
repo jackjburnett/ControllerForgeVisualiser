@@ -20,8 +20,22 @@
 .shape-input {
     margin-bottom: 20px;
 }
-.rectangle {
+.LCD {
     position: absolute;
     background-color: #ccc; /* Add your desired background color */
     border: 1px solid #000;
+}
+.usb-arrow {
+    position: relative;
+}
+.usb-arrow::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 50%;
+    width: 0;
+    height: 0;
+    border: 10px solid transparent;
+    border-bottom-color: #007bff; /* Bootstrap primary color */
+    transform: translateX(-50%);
 }

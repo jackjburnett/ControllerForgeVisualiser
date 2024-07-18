@@ -18,27 +18,47 @@
             <!-- Shape input fields will be added here dynamically -->
         </div>
         <div class="text-center">
-            <button type="button" class="btn btn-primary" onclick="plotShapes()">Plot Shapes</button>
+            <button type="button" class="btn btn-primary" onclick="plotShapes()">Plot Buttons</button>
         </div>
     </form>
     <hr>
 
-    <!-- Separate form for LCD -->
-    <h2 class="text-center my-4">Additional Components</h2>
-    <form id="LCDForm">
-        <div class="form-row">
-            <div class="form-group col-md-6">
-                <label for="lcdX">X Position:</label>
-                <input type="number" class="form-control" id="lcdX" name="lcdX" placeholder="mm" required>
+    <div class="row">
+        <div class="row">
+            <div class="col-md-6">
+                <!-- LCD Form with border -->
+                <div class="border rounded p-3">
+                    <h2 class="text-center my-4">LCD Component</h2>
+                    <form id="LCDForm">
+                        <div class="form-group">
+                            <label for="lcdX">X Position:</label>
+                            <input type="number" class="form-control" id="lcdX" name="lcdX" placeholder="mm" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="lcdY">Y Position:</label>
+                            <input type="number" class="form-control" id="lcdY" name="lcdY" placeholder="mm" required>
+                        </div>
+                        <button type="button" class="btn btn-primary mb-2" onclick="addLCD()">Add LCD</button>
+                    </form>
+                </div>
             </div>
-            <div class="form-group col-md-6">
-                <label for="lcdY">Y Position:</label>
-                <input type="number" class="form-control" id="lcdY" name="lcdY" placeholder="mm" required>
+            <div class="col-md-6">
+                <!-- USB Form with border -->
+                <div class="border rounded p-3">
+                    <h2 class="text-center my-4">USB Port</h2>
+                    <form id="USBForm">
+                        <div class="form-group">
+                            <label for="usbX">X Position:</label>
+                            <input type="number" class="form-control" id="usbX" name="usbX" placeholder="mm" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="usbY">Y Position:</label>
+                            <input type="number" class="form-control" id="usbY" name="usbY" placeholder="mm" required>
+                        </div>
+                        <button type="button" class="btn btn-primary mb-2" onclick="addUSB()">Add USB Port</button>
+                    </form>
+                </div>
             </div>
-        </div>
-        <button type="button" class="btn btn-primary mb-2" onclick="addLCD()">Add LCD</button>
-    </form>
-    <hr>
 
     <hr>
     <h2 class="text-center my-4">Base Size</h2>
