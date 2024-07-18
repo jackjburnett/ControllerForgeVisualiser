@@ -134,4 +134,44 @@ function plotShapes() {
     }
 }
 
+let currentRectangle = null; // Variable to store the current rectangle element
+
+function addRectangle() {
+    const rectX = document.getElementById('rectX').value;
+    const rectY = document.getElementById('rectY').value;
+
+    // Validation: Ensure X and Y positions are filled
+    if (!rectX || !rectY) {
+        alert('Please fill out X and Y positions.');
+        return;
+    }
+
+    // Convert X and Y positions to integers and multiply by zoom factor
+    const zoomFactor = parseFloat(document.getElementById('zoomFactor').value) || 1;
+    const scaledX = Math.round(rectX * zoomFactor);
+    const scaledY = Math.round(rectY * zoomFactor);
+
+    // Create rectangle element
+    const rectangle = document.createElement('div');
+    rectangle.className = 'shape rectangle';
+    rectangle.style.width = (25 * zoomFactor) + 'px'; // Fixed width of 25px scaled by zoom
+    rectangle.style.height = (20 * zoomFactor) + 'px'; // Fixed height of 20px scaled by zoom
+    rectangle.style.left = scaledX + 'px';
+    rectangle.style.top = scaledY + 'px';
+    rectangle.innerHTML = '<span>Rectangle</span>';
+
+    // Replace current rectangle if it exists
+    if (currentRectangle) {
+        currentRectangle.remove(); // Remove current rectangle from canvas
+    }
+
+    // Set new rectangle as the current rectangle
+    currentRectangle = rectangle;
+
+    // Add rectangle to canvas
+    const canvas = document.getElementById('canvas');
+    canvas.appendChild(rectangle);
+}
+
+
 window.onload = initializeForm;

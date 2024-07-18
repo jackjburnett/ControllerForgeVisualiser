@@ -7,35 +7,15 @@
     <!-- Bootstrap CSS -->
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
     <style>
-        #canvas {
-            border: 1px solid #000;
-            position: relative;
-            width: 215px;
-            max-width: 1200px;
-            height: 120px;
-            margin-top: 20px;
-        }
-        .shape {
-            position: absolute;
-            box-sizing: border-box;
-        }
-        .square {
-            border: 1px solid #000;
-        }
-        .circle {
-            border: 1px solid #000;
-            border-radius: 50%;
-        }
-        .shape-input {
-            margin-bottom: 20px;
-        }
+       
     </style>
     <script src="scripts.js"></script>
 </head>
 <body>
 <div class="container">
-    <h1 class="text-center my-4">Shape Plotter</h1>
+    <h1 class="text-center my-4">ControllerForge Visualiser</h1>
     <form id="shapeForm">
+        <h2 class="text-center my-4">Buttons and Keys</h2>
         <div id="formContainer" class="row">
             <!-- Shape input fields will be added here dynamically -->
         </div>
@@ -44,6 +24,26 @@
         </div>
     </form>
     <hr>
+
+    <!-- Separate form for rectangle -->
+    <h2 class="text-center my-4">LCD</h2>
+    <form id="rectangleForm">
+        <div class="form-row">
+            <div class="form-group col-md-6">
+                <label for="rectX">X Position:</label>
+                <input type="number" class="form-control" id="rectX" name="rectX" placeholder="mm" required>
+            </div>
+            <div class="form-group col-md-6">
+                <label for="rectY">Y Position:</label>
+                <input type="number" class="form-control" id="rectY" name="rectY" placeholder="mm" required>
+            </div>
+        </div>
+        <button type="button" class="btn btn-primary mb-2" onclick="addRectangle()">Add Rectangle</button>
+    </form>
+    <hr>
+
+    <hr>
+    <h2 class="text-center my-4">Base Size</h2>
     <form id="baseSizeForm" class="form-inline">
         <div class="form-group mx-sm-3 mb-2">
             <label for="baseWidth" class="mr-2">Base Width:</label>
