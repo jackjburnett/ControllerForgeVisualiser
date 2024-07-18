@@ -212,7 +212,10 @@ function addUSB() {
     arrowElement.style.left = leftPosition + 'px'; // Set left position
 
     // Calculate top position considering zoom
-    arrowElement.style.top = (usbY * zoomFactor) + 'px';
+    const arrowHeight = 20; // Adjust this value based on your arrow's height
+    const topPosition = (usbY * zoomFactor) - arrowHeight; // Place arrow at bottom edge
+
+    arrowElement.style.top = topPosition + 'px';
 
     // Create and append label text
     const labelText = document.createElement('span');
