@@ -42,7 +42,7 @@
             <button type="button" class="btn btn-primary" onclick="plotShapes()">Plot Shapes</button>
         </div>
     </form>
-    <div id="canvas" class="mt-4"></div>
+    <div id="canvas" class="mt-4 mx-auto"></div>
 </div>
 
 <!-- Bootstrap JS and dependencies -->
@@ -82,13 +82,15 @@
                             <label for="diameter${index}" id="diameterLabel${index}">Diameter:</label>
                             <input type="number" class="form-control" id="diameter${index}" name="diameter${index}">
                         </div>
-                        <div class="form-group">
-                            <label for="x${index}">X Position:</label>
-                            <input type="number" class="form-control" id="x${index}" name="x${index}">
-                        </div>
-                        <div class="form-group">
-                            <label for="y${index}">Y Position:</label>
-                            <input type="number" class="form-control" id="y${index}" name="y${index}">
+                        <div class="form-row">
+                            <div class="form-group col-md-6">
+                                <label for="x${index}">X Position:</label>
+                                <input type="number" class="form-control" id="x${index}" name="x${index}">
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label for="y${index}">Y Position:</label>
+                                <input type="number" class="form-control" id="y${index}" name="y${index}">
+                            </div>
                         </div>
                     </div>
                 </div>
