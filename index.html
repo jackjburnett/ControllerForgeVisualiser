@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shape Plotter</title>
+    <style>
+        #canvas {
+            border: 1px solid #000;
+            position: relative;
+            width: 800px;
+            height: 600px;
+        }
+        .shape {
+            position: absolute;
+            box-sizing: border-box;
+        }
+        .square {
+            border: 1px solid #000;
+        }
+        .circle {
+            border: 1px solid #000;
+            border-radius: 50%;
+        }
+        .shape-input {
+            display: inline-block;
+            margin: 10px;
+            vertical-align: top;
+        }
+        .form-row {
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+<h1>Shape Plotter</h1>
+<form id="shapeForm">
+    <div id="formContainer">
+        <!-- Shape input fields will be added here dynamically -->
+    </div>
+    <button type="button" onclick="plotShapes()">Plot Shapes</button>
+</form>
+<div id="canvas"></div>
+
+<script>
+    let shapeLabels = [
+        "Up", "Down", "Left", "Right",
+        "A", "B", "X", "Y",
+        "LB", "LT", "RB", "RT"
+    ];
+
+    function createShapeInput(index) {
+        const label = shapeLabels[index];
+        const div = document.createElement('div');
+        div.className = 'shape-input';
+        div.innerHTML = `
+                <h3>${label}</h3>
+                <label for="shape${index}">Shape:</label>
+                <select id="shape${index}" name="shape${index}" onchange="toggleDiameter(${index})" required>
+                    <option value="square">Key</option>
+                    <option value="circle">Button</option>
+                </select>
+                <br>
+                <label for="width${index}" id="widthLabel${index}">Width:</label>
+                <input type="number" id="width${index}" name="width${index}" required>
+                <br>
+                <label for="height${index}" id="heightLabel${index}">Height:</label>
+                <input type="number" id="height${index}" name="height${index}" required>
+                <br>
+                <label for="diameter${index}" id="diameterLabel${index}" style="display:none;">Diameter:</label>
+                <input type="number" id="diameter${index}" name="diameter${index}" style="display:none;">
+                <br>
+                <label for="x${index}">X Position:</label>
+                <input type="number" id="x${index}" name="x${index}" required>
+                <br>
+                <label for="y${index}">Y Position:</label>
+                <input type="number" id="y${index}" name="y${index}" required>
+            `;
+        return div;
+    }
+
+    function toggleDiameter(index) {
+        const shape = document.getElementById(`shape${index}`).value;
+        const widthLabel = document.getElementById(`widthLabel${index}`);
+        const heightLabel = document.getElementById(`heightLabel${index}`);
+        const widthInput = document.getElementById(`width${index}`);
+        const heightInput = document.getElementById(`height${index}`);
+        const diameterLabel = document.getElementById(`diameterLabel${index}`);
+        const diameterInput = document.getElementById(`diameter${index}`);
+
+        if (shape === 'circle') {
+            widthLabel.style.display = 'none';
+            widthInput.style.display = 'none';
+            heightLabel.style.display = 'none';
+            heightInput.style.display = 'none';
+            diameterLabel.style.display = 'inline';
+            diameterInput.style.display = 'inline';
+            diameterInput.required = true;
+            widthInput.required = false;
+            heightInput.required = false;
+        } else {
+            widthLabel.style.display = 'inline';
+            widthInput.style.display = 'inline';
+            heightLabel.style.display = 'inline';
+            heightInput.style.display = 'inline';
+            diameterLabel.style.display = 'none';
+            diameterInput.style.display = 'none';
+            diameterInput.required = false;
+            widthInput.required = true;
+            heightInput.required = true;
+        }
+    }
+
+    function initializeForm() {
+        const formContainer = document.getElementById('formContainer');
+        for (let i = 0; i < shapeLabels.length; i++) {
+            if (i % 4 === 0) {
+                const row = document.createElement('div');
+                row.className = 'form-row';
+                formContainer.appendChild(row);
+            }
+            formContainer.lastChild.appendChild(createShapeInput(i));
+        }
+    }
+
+    function plotShapes() {
+        const canvas = document.getElementById('canvas');
+        const canvasHeight = canvas.offsetHeight;
+        canvas.innerHTML = '';  // Clear the canvas
+
+        for (let i = 0; i < shapeLabels.length; i++) {
+            const shape = document.getElementById(`shape${i}`).value;
+            const x = document.getElementById(`x${i}`).value;
+            let y = document.getElementById(`y${i}`).value;
+
+            let shapeElement = document.createElement('div');
+            shapeElement.className = 'shape ' + shape;
+
+            if (shape === 'circle') {
+                const diameter = document.getElementById(`diameter${i}`).value;
+                shapeElement.style.width = diameter + 'px';
+                shapeElement.style.height = diameter + 'px';
+                y = canvasHeight - y - diameter;
+            } else {
+                const width = document.getElementById(`width${i}`).value;
+                const height = document.getElementById(`height${i}`).value;
+                shapeElement.style.width = width + 'px';
+                shapeElement.style.height = height + 'px';
+                y = canvasHeight - y - height;
+            }
+
+            shapeElement.style.left = x + 'px';
+            shapeElement.style.top = y + 'px';
+            shapeElement.innerHTML = `<span>${shapeLabels[i]}</span>`;
+            shapeElement.style.display = 'flex';
+            shapeElement.style.alignItems = 'center';
+            shapeElement.style.justifyContent = 'center';
+
+            canvas.appendChild(shapeElement);
+        }
+    }
+
+    window.onload = initializeForm;
+</script>
+</body>
+</html>
