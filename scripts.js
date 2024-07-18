@@ -124,7 +124,8 @@ function plotShapes() {
             y = baseHeight * zoomFactor - y - height / 2; // Center y position for rectangle or other shapes
         }
 
-        x -= shapeElement.offsetWidth / 2; // Adjust x to center the shape horizontally
+        // Center x position for all shapes
+        x -= shapeElement.offsetWidth / 2;
 
         shapeElement.style.left = x + 'px';
         shapeElement.style.top = y + 'px';
