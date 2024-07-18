@@ -4,12 +4,16 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Shape Plotter</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
     <style>
         #canvas {
             border: 1px solid #000;
             position: relative;
-            width: 800px;
+            width: 100%;
+            max-width: 800px;
             height: 600px;
+            margin-top: 20px;
         }
         .shape {
             position: absolute;
@@ -23,24 +27,28 @@
             border-radius: 50%;
         }
         .shape-input {
-            display: inline-block;
-            margin: 10px;
-            vertical-align: top;
-        }
-        .form-row {
             margin-bottom: 20px;
         }
     </style>
 </head>
 <body>
-<h1>Shape Plotter</h1>
-<form id="shapeForm">
-    <div id="formContainer">
-        <!-- Shape input fields will be added here dynamically -->
-    </div>
-    <button type="button" onclick="plotShapes()">Plot Shapes</button>
-</form>
-<div id="canvas"></div>
+<div class="container">
+    <h1 class="text-center my-4">Shape Plotter</h1>
+    <form id="shapeForm">
+        <div id="formContainer" class="row">
+            <!-- Shape input fields will be added here dynamically -->
+        </div>
+        <div class="text-center">
+            <button type="button" class="btn btn-primary" onclick="plotShapes()">Plot Shapes</button>
+        </div>
+    </form>
+    <div id="canvas" class="mt-4"></div>
+</div>
+
+<!-- Bootstrap JS and dependencies -->
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 
 <script>
     let shapeLabels = [
@@ -52,74 +60,60 @@
     function createShapeInput(index) {
         const label = shapeLabels[index];
         const div = document.createElement('div');
-        div.className = 'shape-input';
+        div.className = 'col-md-3 shape-input';
         div.innerHTML = `
-                <h3>${label}</h3>
-                <label for="shape${index}">Shape:</label>
-                <select id="shape${index}" name="shape${index}" onchange="toggleDiameter(${index})" required>
-                    <option value="square">Key</option>
-                    <option value="circle">Button</option>
-                </select>
-                <br>
-                <label for="width${index}" id="widthLabel${index}">Width:</label>
-                <input type="number" id="width${index}" name="width${index}" required>
-                <br>
-                <label for="height${index}" id="heightLabel${index}">Height:</label>
-                <input type="number" id="height${index}" name="height${index}" required>
-                <br>
-                <label for="diameter${index}" id="diameterLabel${index}" style="display:none;">Diameter:</label>
-                <input type="number" id="diameter${index}" name="diameter${index}" style="display:none;">
-                <br>
-                <label for="x${index}">X Position:</label>
-                <input type="number" id="x${index}" name="x${index}" required>
-                <br>
-                <label for="y${index}">Y Position:</label>
-                <input type="number" id="y${index}" name="y${index}" required>
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title text-center">${label}</h5>
+                        <div class="form-group">
+                            <label for="shape${index}">Shape:</label>
+                            <select class="form-control" id="shape${index}" name="shape${index}" onchange="toggleDiameter(${index})" required>
+                                <option value="square">Keys</option>
+                                <option value="circle">Button</option>
+                            </select>
+                        </div>
+                        <div class="form-group" id="widthHeightGroup${index}">
+                            <label for="width${index}" id="widthLabel${index}">Width:</label>
+                            <input type="number" class="form-control" id="width${index}" name="width${index}" required>
+                            <label for="height${index}" id="heightLabel${index}">Height:</label>
+                            <input type="number" class="form-control" id="height${index}" name="height${index}" required>
+                        </div>
+                        <div class="form-group" id="diameterGroup${index}" style="display:none;">
+                            <label for="diameter${index}" id="diameterLabel${index}">Diameter:</label>
+                            <input type="number" class="form-control" id="diameter${index}" name="diameter${index}">
+                        </div>
+                        <div class="form-group">
+                            <label for="x${index}">X Position:</label>
+                            <input type="number" class="form-control" id="x${index}" name="x${index}">
+                        </div>
+                        <div class="form-group">
+                            <label for="y${index}">Y Position:</label>
+                            <input type="number" class="form-control" id="y${index}" name="y${index}">
+                        </div>
+                    </div>
+                </div>
             `;
         return div;
     }
 
     function toggleDiameter(index) {
         const shape = document.getElementById(`shape${index}`).value;
-        const widthLabel = document.getElementById(`widthLabel${index}`);
-        const heightLabel = document.getElementById(`heightLabel${index}`);
-        const widthInput = document.getElementById(`width${index}`);
-        const heightInput = document.getElementById(`height${index}`);
-        const diameterLabel = document.getElementById(`diameterLabel${index}`);
-        const diameterInput = document.getElementById(`diameter${index}`);
+        const widthHeightGroup = document.getElementById(`widthHeightGroup${index}`);
+        const diameterGroup = document.getElementById(`diameterGroup${index}`);
 
         if (shape === 'circle') {
-            widthLabel.style.display = 'none';
-            widthInput.style.display = 'none';
-            heightLabel.style.display = 'none';
-            heightInput.style.display = 'none';
-            diameterLabel.style.display = 'inline';
-            diameterInput.style.display = 'inline';
-            diameterInput.required = true;
-            widthInput.required = false;
-            heightInput.required = false;
+            widthHeightGroup.style.display = 'none';
+            diameterGroup.style.display = 'block';
         } else {
-            widthLabel.style.display = 'inline';
-            widthInput.style.display = 'inline';
-            heightLabel.style.display = 'inline';
-            heightInput.style.display = 'inline';
-            diameterLabel.style.display = 'none';
-            diameterInput.style.display = 'none';
-            diameterInput.required = false;
-            widthInput.required = true;
-            heightInput.required = true;
+            widthHeightGroup.style.display = 'block';
+            diameterGroup.style.display = 'none';
         }
     }
 
     function initializeForm() {
         const formContainer = document.getElementById('formContainer');
         for (let i = 0; i < shapeLabels.length; i++) {
-            if (i % 4 === 0) {
-                const row = document.createElement('div');
-                row.className = 'form-row';
-                formContainer.appendChild(row);
-            }
-            formContainer.lastChild.appendChild(createShapeInput(i));
+            formContainer.appendChild(createShapeInput(i));
         }
     }
 
@@ -132,6 +126,8 @@
             const shape = document.getElementById(`shape${i}`).value;
             const x = document.getElementById(`x${i}`).value;
             let y = document.getElementById(`y${i}`).value;
+
+            if (x === "" || y === "") continue;
 
             let shapeElement = document.createElement('div');
             shapeElement.className = 'shape ' + shape;
