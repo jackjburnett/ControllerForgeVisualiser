@@ -1,45 +1,45 @@
 #canvas {
-    border: 1px solid #000;
-    position: relative;
-    width: 215px;
-    max-width: 1200px;
-    height: 120px;
-    margin-top: 20px;
+  border: 1px solid #000;
+  position: relative;
+  width: 215px;
+  max-width: 1200px;
+  height: 120px;
+  margin-top: 20px;
 }
 .shape {
-    position: absolute;
-    box-sizing: border-box;
+  position: absolute;
+  box-sizing: border-box;
 }
 .square {
-    border: 1px solid #000;
+  border: 1px solid #000;
 }
 .circle {
-    border: 1px solid #000;
-    border-radius: 50%;
+  border: 1px solid #000;
+  border-radius: 50%;
 }
 .shape-input {
-    margin-bottom: 20px;
+  margin-bottom: 20px;
 }
 .LCD {
-    position: absolute;
-    background-color: #ccc; /* Add your desired background color */
-    border: 1px solid #000;
+  position: absolute;
+  background-color: #ccc; /* Add your desired background color */
+  border: 1px solid #000;
 }
 .usb-arrow {
-    position: absolute;
-    top: 0; /* Adjust this value if needed */
-    left: 0; /* Adjust this value if needed */
-    width: 20px; /* Adjust this value based on the width of your arrow */
+  position: absolute;
+  top: 0; /* Adjust this value if needed */
+  left: 0; /* Adjust this value if needed */
+  width: 20px; /* Adjust this value based on the width of your arrow */
 }
 
 .usb-arrow::after {
-    content: '';
-    position: absolute;
-    top: 100%; /* Adjust this value to position arrow relative to 'USB' */
-    left: 50%;
-    width: 0;
-    height: 0;
-    border: 10px solid transparent;
-    border-top-color: #000;
-    transform: translateX(-50%);
+  content: "";
+  position: absolute;
+  top: 100%; /* Adjust this value to position arrow relative to 'USB' */
+  left: 50%;
+  width: 0;
+  height: 0;
+  border: 10px solid transparent;
+  border-top-color: #000;
+  transform: translateX(-50%);
 }
