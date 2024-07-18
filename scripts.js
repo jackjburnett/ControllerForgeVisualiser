@@ -113,8 +113,8 @@ function plotShapes() {
             diameter = parseInt(diameter) * zoomFactor;
             shapeElement.style.width = diameter + 'px';
             shapeElement.style.height = diameter + 'px';
-            y = baseHeight * zoomFactor - y - diameter / 2; // Center y position for circle
             x -= diameter / 2; // Center x position for circle
+            y = baseHeight * zoomFactor - y - diameter / 2; // Center y position for circle
         } else {
             let width = document.getElementById(`width${i}`).value;
             let height = document.getElementById(`height${i}`).value;
@@ -122,8 +122,8 @@ function plotShapes() {
             height = parseInt(height) * zoomFactor;
             shapeElement.style.width = width + 'px';
             shapeElement.style.height = height + 'px';
-            y = baseHeight * zoomFactor - y - height / 2; // Center y position for rectangle or other shapes
             x -= width / 2; // Center x position for rectangle or other shapes
+            y = baseHeight * zoomFactor - y - height / 2; // Center y position for rectangle or other shapes
         }
 
         shapeElement.style.left = x + 'px';
