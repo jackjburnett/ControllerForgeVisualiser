@@ -192,8 +192,8 @@ let arrowElement = null;
 
 function addUSB() {
     // Get X and Y positions from form
-    const usbX = document.getElementById('usbX').value;
-    const usbY = document.getElementById('usbY').value;
+    const usbX = parseFloat(document.getElementById('usbX').value);
+    const usbY = parseFloat(document.getElementById('usbY').value);
 
     // Remove the existing arrow if it exists
     if (arrowElement) {
@@ -204,8 +204,11 @@ function addUSB() {
     arrowElement = document.createElement('div');
     arrowElement.classList.add('usb-arrow');
 
-    // Set left position relative to the X coordinate
-    arrowElement.style.left = usbX + 'px';
+    // Calculate left position to center the arrow
+    const arrowWidth = 20; // Adjust this value based on your arrow's width
+    const leftPosition = usbX - (arrowWidth / 2); // Center the arrow
+
+    arrowElement.style.left = leftPosition + 'px'; // Set left position
 
     // Set top position relative to the Y coordinate
     arrowElement.style.top = usbY + 'px';

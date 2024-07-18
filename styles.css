@@ -27,9 +27,11 @@
 }
 .usb-arrow {
     position: absolute;
-    top: 0; /* Adjust this value to position arrow relative to 'USB' */
-    left: 0; /* Adjust this value to position arrow relative to 'USB' */
+    top: 0; /* Adjust this value if needed */
+    left: 0; /* Adjust this value if needed */
+    width: 20px; /* Adjust this value based on the width of your arrow */
 }
+
 .usb-arrow::after {
     content: '';
     position: absolute;
