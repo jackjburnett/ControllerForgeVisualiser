@@ -46,11 +46,11 @@
     <form id="baseSizeForm" class="form-inline">
         <div class="form-group mx-sm-3 mb-2">
             <label for="baseWidth" class="mr-2">Base Width:</label>
-            <input type="number" class="form-control" id="baseWidth" placeholder="Canvas base width">
+            <input type="number" class="form-control" id="baseWidth" placeholder="Canvas base width" value="800">
         </div>
         <div class="form-group mx-sm-3 mb-2">
             <label for="baseHeight" class="mr-2">Base Height:</label>
-            <input type="number" class="form-control" id="baseHeight" placeholder="Canvas base height">
+            <input type="number" class="form-control" id="baseHeight" placeholder="Canvas base height" value="600">
         </div>
         <div class="form-group mx-sm-3 mb-2">
             <label for="zoomFactor" class="mr-2">Zoom Factor:</label>
@@ -144,14 +144,16 @@
         baseHeight = document.getElementById('baseHeight').value || baseHeight;
         zoomFactor = document.getElementById('zoomFactor').value || zoomFactor;
 
+        // Adjust canvas size based on baseWidth and baseHeight multiplied by zoomFactor
+        const canvas = document.getElementById('canvas');
+        canvas.style.width = baseWidth * zoomFactor + 'px';
+        canvas.style.height = baseHeight * zoomFactor + 'px';
+
         plotShapes(); // Re-plot shapes after applying base size and zoom
     }
 
     function plotShapes() {
         const canvas = document.getElementById('canvas');
-        canvas.style.width = baseWidth + 'px';
-        canvas.style.height = baseHeight + 'px';
-
         const canvasHeight = canvas.offsetHeight;
         canvas.innerHTML = '';  // Clear the canvas
 
@@ -174,7 +176,7 @@
                 diameter = parseInt(diameter) * zoomFactor;
                 shapeElement.style.width = diameter + 'px';
                 shapeElement.style.height = diameter + 'px';
-                y = baseHeight - y - diameter;
+                y = baseHeight * zoomFactor - y - diameter;
             } else {
                 let width = document.getElementById(`width${i}`).value;
                 let height = document.getElementById(`height${i}`).value;
@@ -182,7 +184,7 @@
                 height = parseInt(height) * zoomFactor;
                 shapeElement.style.width = width + 'px';
                 shapeElement.style.height = height + 'px';
-                y = baseHeight - y - height;
+                y = baseHeight * zoomFactor - y - height;
             }
 
             shapeElement.style.left = x + 'px';
