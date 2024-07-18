@@ -213,7 +213,7 @@ function addUSB() {
 
     // Calculate top position considering zoom
     const arrowHeight = 20; // Adjust this value based on your arrow's height
-    const topPosition = (usbY * zoomFactor) - arrowHeight; // Place arrow at bottom edge
+    const topPosition = (usbY * zoomFactor); // Place arrow at top edge
 
     arrowElement.style.top = topPosition + 'px';
 
