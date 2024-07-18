@@ -11,7 +11,7 @@
             border: 1px solid #000;
             position: relative;
             width: 100%;
-            max-width: 800px;
+            max-width: 1200px;
             height: 600px;
             margin-top: 20px;
         }
@@ -41,6 +41,18 @@
         <div class="text-center">
             <button type="button" class="btn btn-primary" onclick="plotShapes()">Plot Shapes</button>
         </div>
+    </form>
+    <hr>
+    <form id="baseSizeForm" class="form-inline">
+        <div class="form-group mx-sm-3 mb-2">
+            <label for="canvasWidth" class="mr-2">Base Width:</label>
+            <input type="number" class="form-control" id="canvasWidth" placeholder="Canvas width">
+        </div>
+        <div class="form-group mx-sm-3 mb-2">
+            <label for="canvasHeight" class="mr-2">Base Height:</label>
+            <input type="number" class="form-control" id="canvasHeight" placeholder="Canvas height">
+        </div>
+        <button type="button" class="btn btn-primary mb-2" onclick="setCanvasSize()">Set Base Size</button>
     </form>
     <div id="canvas" class="mt-4 mx-auto"></div>
 </div>
@@ -126,22 +138,29 @@
 
         for (let i = 0; i < shapeLabels.length; i++) {
             const shape = document.getElementById(`shape${i}`).value;
-            const x = document.getElementById(`x${i}`).value;
+            let x = document.getElementById(`x${i}`).value;
             let y = document.getElementById(`y${i}`).value;
 
             if (x === "" || y === "") continue;
+
+            // Convert values to integers and multiply by 10
+            x = parseInt(x) * 10;
+            y = parseInt(y) * 10;
 
             let shapeElement = document.createElement('div');
             shapeElement.className = 'shape ' + shape;
 
             if (shape === 'circle') {
-                const diameter = document.getElementById(`diameter${i}`).value;
+                let diameter = document.getElementById(`diameter${i}`).value;
+                diameter = parseInt(diameter) * 10;
                 shapeElement.style.width = diameter + 'px';
                 shapeElement.style.height = diameter + 'px';
                 y = canvasHeight - y - diameter;
             } else {
-                const width = document.getElementById(`width${i}`).value;
-                const height = document.getElementById(`height${i}`).value;
+                let width = document.getElementById(`width${i}`).value;
+                let height = document.getElementById(`height${i}`).value;
+                width = parseInt(width) * 10;
+                height = parseInt(height) * 10;
                 shapeElement.style.width = width + 'px';
                 shapeElement.style.height = height + 'px';
                 y = canvasHeight - y - height;
@@ -156,6 +175,15 @@
 
             canvas.appendChild(shapeElement);
         }
+    }
+
+    function setCanvasSize() {
+        const canvasWidth = document.getElementById('canvasWidth').value;
+        const canvasHeight = document.getElementById('canvasHeight').value;
+
+        const canvas = document.getElementById('canvas');
+        canvas.style.width = canvasWidth + 'px';
+        canvas.style.height = canvasHeight + 'px';
     }
 
     window.onload = initializeForm;
