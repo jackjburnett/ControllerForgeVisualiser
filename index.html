@@ -6,9 +6,7 @@
     <title>ControllerForge Visualiser</title>
     <!-- Bootstrap CSS -->
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
-    <style>
-       
-    </style>
+    <link href="styles.css" rel="stylesheet">
     <script src="scripts.js"></script>
 </head>
 <body>
@@ -25,20 +23,20 @@
     </form>
     <hr>
 
-    <!-- Separate form for rectangle -->
-    <h2 class="text-center my-4">LCD</h2>
-    <form id="rectangleForm">
+    <!-- Separate form for LCD -->
+    <h2 class="text-center my-4">Additional Components</h2>
+    <form id="LCDForm">
         <div class="form-row">
             <div class="form-group col-md-6">
-                <label for="rectX">X Position:</label>
-                <input type="number" class="form-control" id="rectX" name="rectX" placeholder="mm" required>
+                <label for="lcdX">X Position:</label>
+                <input type="number" class="form-control" id="lcdX" name="lcdX" placeholder="mm" required>
             </div>
             <div class="form-group col-md-6">
-                <label for="rectY">Y Position:</label>
-                <input type="number" class="form-control" id="rectY" name="rectY" placeholder="mm" required>
+                <label for="lcdY">Y Position:</label>
+                <input type="number" class="form-control" id="lcdY" name="lcdY" placeholder="mm" required>
             </div>
         </div>
-        <button type="button" class="btn btn-primary mb-2" onclick="addRectangle()">Add Rectangle</button>
+        <button type="button" class="btn btn-primary mb-2" onclick="addLCD()">Add LCD</button>
     </form>
     <hr>
 
