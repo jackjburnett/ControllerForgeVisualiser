@@ -227,4 +227,79 @@ function addUSB() {
     canvas.appendChild(arrowElement);
 }
 
+function saveConfigurationToJson() {
+    // Gather all variables
+    let configuration = {
+        baseWidth: baseWidth,
+        baseHeight: baseHeight,
+        zoomFactor: zoomFactor,
+        shapeInputs: []
+    };
+
+    // Iterate over shape inputs
+    for (let i = 0; i < shapeLabels.length; i++) {
+        let shapeInput = {
+            label: shapeLabels[i],
+            shape: document.getElementById(`shape${i}`).value,
+            width: document.getElementById(`width${i}`).value,
+            height: document.getElementById(`height${i}`).value,
+            diameter: document.getElementById(`diameter${i}`).value,
+            x: document.getElementById(`x${i}`).value,
+            y: document.getElementById(`y${i}`).value
+        };
+        configuration.shapeInputs.push(shapeInput);
+    }
+
+    // LCD configuration
+    if (currentLCD) {
+        let lcdConfig = {
+            x: currentLCD.style.left.replace('px', ''),
+            y: currentLCD.style.top.replace('px', '')
+        };
+        configuration.lcd = lcdConfig;
+    }
+
+    // USB configuration
+    if (arrowElement) {
+        let usbConfig = {
+            x: arrowElement.style.left.replace('px', ''),
+            y: arrowElement.style.top.replace('px', '')
+        };
+        configuration.usb = usbConfig;
+    }
+
+    // Convert to JSON string
+    let jsonString = JSON.stringify(configuration);
+
+    // Optionally log or use the jsonString
+    console.log(jsonString);
+
+    // Return the JSON object (optional)
+    return configuration;
+}
+
+function saveConfiguration() {
+    const configuration = saveConfigurationToJson();
+    const jsonString = JSON.stringify(configuration, null, 2); // Formatting JSON for readability
+
+    // Create a Blob object from the JSON string
+    const blob = new Blob([jsonString], { type: 'application/json' });
+
+    // Create a temporary URL for the Blob
+    const url = URL.createObjectURL(blob);
+
+    // Create a link element to trigger the download
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = 'configuration.json'; // Filename to be downloaded
+    document.body.appendChild(a); // Append link to body
+    a.click(); // Programmatically click the link to trigger download
+
+    // Clean up: remove the temporary URL
+    setTimeout(() => {
+        URL.revokeObjectURL(url);
+        document.body.removeChild(a);
+    }, 0);
+}
+
 window.onload = initializeForm;
