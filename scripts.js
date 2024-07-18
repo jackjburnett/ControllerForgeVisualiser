@@ -194,6 +194,7 @@ function addUSB() {
     // Get X and Y positions from form
     const usbX = parseFloat(document.getElementById('usbX').value);
     const usbY = parseFloat(document.getElementById('usbY').value);
+    const zoomFactor = parseFloat(document.getElementById('zoomFactor').value) || 1;
 
     // Remove the existing arrow if it exists
     if (arrowElement) {
@@ -206,12 +207,12 @@ function addUSB() {
 
     // Calculate left position to center the arrow
     const arrowWidth = 20; // Adjust this value based on your arrow's width
-    const leftPosition = usbX - (arrowWidth / 2); // Center the arrow
+    const leftPosition = (usbX * zoomFactor) - (arrowWidth / 2); // Center the arrow considering zoom
 
     arrowElement.style.left = leftPosition + 'px'; // Set left position
 
-    // Set top position relative to the Y coordinate
-    arrowElement.style.top = usbY + 'px';
+    // Calculate top position considering zoom
+    arrowElement.style.top = (usbY * zoomFactor) + 'px';
 
     // Create and append label text
     const labelText = document.createElement('span');
