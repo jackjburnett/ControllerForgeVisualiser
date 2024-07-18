@@ -187,18 +187,26 @@ function addLCD() {
     canvas.appendChild(LCD);
 }
 
+// Define a variable to store the arrow element
+let arrowElement = null;
+
 function addUSB() {
     // Get X and Y positions from form
     const usbX = document.getElementById('usbX').value;
     const usbY = document.getElementById('usbY').value;
 
-    // Create an arrow element pointing to the specified position
-    const arrowElement = document.createElement('div');
+    // Remove the existing arrow if it exists
+    if (arrowElement) {
+        arrowElement.remove();
+    }
+
+    // Create a new arrow element pointing to the specified position
+    arrowElement = document.createElement('div');
     arrowElement.classList.add('usb-arrow');
     arrowElement.style.top = usbY + 'px'; // Set top position
     arrowElement.style.left = usbX + 'px'; // Set left position
 
-    // Append arrow to the canvas or container where you want to display it
+    // Append the arrow to the canvas or container where you want to display it
     const canvas = document.getElementById('canvas');
     canvas.appendChild(arrowElement);
 }
