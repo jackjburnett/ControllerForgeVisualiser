@@ -11,7 +11,7 @@
             border: 1px solid #000;
             position: relative;
             width: 100%;
-            max-width: 1200px;
+            max-width: 800px;
             height: 600px;
             margin-top: 20px;
         }
@@ -45,16 +45,20 @@
     <hr>
     <form id="baseSizeForm" class="form-inline">
         <div class="form-group mx-sm-3 mb-2">
-            <label for="canvasWidth" class="mr-2">Base Width:</label>
-            <input type="number" class="form-control" id="canvasWidth" placeholder="Canvas width">
+            <label for="baseWidth" class="mr-2">Base Width:</label>
+            <input type="number" class="form-control" id="baseWidth" placeholder="Canvas base width">
         </div>
         <div class="form-group mx-sm-3 mb-2">
-            <label for="canvasHeight" class="mr-2">Base Height:</label>
-            <input type="number" class="form-control" id="canvasHeight" placeholder="Canvas height">
+            <label for="baseHeight" class="mr-2">Base Height:</label>
+            <input type="number" class="form-control" id="baseHeight" placeholder="Canvas base height">
         </div>
-        <button type="button" class="btn btn-primary mb-2" onclick="setCanvasSize()">Set Base Size</button>
+        <div class="form-group mx-sm-3 mb-2">
+            <label for="zoomFactor" class="mr-2">Zoom Factor:</label>
+            <input type="number" class="form-control" id="zoomFactor" placeholder="Zoom factor" value="1">
+        </div>
+        <button type="button" class="btn btn-primary mb-2" onclick="applyBaseSizeAndZoom()">Apply Base Size & Zoom</button>
     </form>
-    <div id="canvas" class="mt-4 mx-auto"></div>
+    <div id="canvas" class="mt-4"></div>
 </div>
 
 <!-- Bootstrap JS and dependencies -->
@@ -68,6 +72,10 @@
         "A", "B", "X", "Y",
         "LB", "LT", "RB", "RT"
     ];
+
+    let zoomFactor = 1;
+    let baseWidth = 800; // Default base width
+    let baseHeight = 600; // Default base height
 
     function createShapeInput(index) {
         const label = shapeLabels[index];
@@ -131,8 +139,19 @@
         }
     }
 
+    function applyBaseSizeAndZoom() {
+        baseWidth = document.getElementById('baseWidth').value || baseWidth;
+        baseHeight = document.getElementById('baseHeight').value || baseHeight;
+        zoomFactor = document.getElementById('zoomFactor').value || zoomFactor;
+
+        plotShapes(); // Re-plot shapes after applying base size and zoom
+    }
+
     function plotShapes() {
         const canvas = document.getElementById('canvas');
+        canvas.style.width = baseWidth + 'px';
+        canvas.style.height = baseHeight + 'px';
+
         const canvasHeight = canvas.offsetHeight;
         canvas.innerHTML = '';  // Clear the canvas
 
@@ -143,27 +162,27 @@
 
             if (x === "" || y === "") continue;
 
-            // Convert values to integers and multiply by 10
-            x = parseInt(x) * 10;
-            y = parseInt(y) * 10;
+            // Convert values to integers and multiply by zoom factor
+            x = parseInt(x) * zoomFactor;
+            y = parseInt(y) * zoomFactor;
 
             let shapeElement = document.createElement('div');
             shapeElement.className = 'shape ' + shape;
 
             if (shape === 'circle') {
                 let diameter = document.getElementById(`diameter${i}`).value;
-                diameter = parseInt(diameter) * 10;
+                diameter = parseInt(diameter) * zoomFactor;
                 shapeElement.style.width = diameter + 'px';
                 shapeElement.style.height = diameter + 'px';
-                y = canvasHeight - y - diameter;
+                y = baseHeight - y - diameter;
             } else {
                 let width = document.getElementById(`width${i}`).value;
                 let height = document.getElementById(`height${i}`).value;
-                width = parseInt(width) * 10;
-                height = parseInt(height) * 10;
+                width = parseInt(width) * zoomFactor;
+                height = parseInt(height) * zoomFactor;
                 shapeElement.style.width = width + 'px';
                 shapeElement.style.height = height + 'px';
-                y = canvasHeight - y - height;
+                y = baseHeight - y - height;
             }
 
             shapeElement.style.left = x + 'px';
@@ -175,15 +194,6 @@
 
             canvas.appendChild(shapeElement);
         }
-    }
-
-    function setCanvasSize() {
-        const canvasWidth = document.getElementById('canvasWidth').value;
-        const canvasHeight = document.getElementById('canvasHeight').value;
-
-        const canvas = document.getElementById('canvas');
-        canvas.style.width = canvasWidth + 'px';
-        canvas.style.height = canvasHeight + 'px';
     }
 
     window.onload = initializeForm;
