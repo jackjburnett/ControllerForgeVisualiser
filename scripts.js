@@ -203,15 +203,21 @@ function addUSB() {
     // Create a new arrow element pointing to the specified position
     arrowElement = document.createElement('div');
     arrowElement.classList.add('usb-arrow');
-    arrowElement.style.top = usbY + 'px'; // Set top position
-    arrowElement.style.left = usbX + 'px'; // Set left position
+
+    // Set left position relative to the X coordinate
+    arrowElement.style.left = usbX + 'px';
+
+    // Set top position relative to the Y coordinate
+    arrowElement.style.top = usbY + 'px';
 
     // Create and append label text
-    const labelText = document.createTextNode('USB');
+    const labelText = document.createElement('span');
+    labelText.textContent = 'USB';
     arrowElement.appendChild(labelText);
 
     // Append the arrow to the canvas or container where you want to display it
     const canvas = document.getElementById('canvas');
     canvas.appendChild(arrowElement);
 }
+
 window.onload = initializeForm;

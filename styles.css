@@ -26,16 +26,18 @@
     border: 1px solid #000;
 }
 .usb-arrow {
-    position: relative;
+    position: absolute;
+    top: 0; /* Adjust this value to position arrow relative to 'USB' */
+    left: 0; /* Adjust this value to position arrow relative to 'USB' */
 }
 .usb-arrow::after {
     content: '';
     position: absolute;
-    top: 0;
+    top: 100%; /* Adjust this value to position arrow relative to 'USB' */
     left: 50%;
     width: 0;
     height: 0;
     border: 10px solid transparent;
-    border-bottom-color: #007bff; /* Bootstrap primary color */
+    border-top-color: #000;
     transform: translateX(-50%);
 }
