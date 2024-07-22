@@ -10,9 +10,13 @@
             rel="stylesheet"
     />
     <link href="styles.css" rel="stylesheet"/>
-    <script src="scripts.js"></script>
+    <script src="scripts/additionalComponents.js"></script>
+    <script src="scripts/canvas.js"></script>
+    <script src="scripts/save.js"></script>
+    <script src="scripts/shapes.js"></script>
 </head>
 <body>
+<script src="scripts/index.js" type="module"></script>
 <div class="container">
     <h1 class="text-center my-4">ControllerForge Visualiser</h1>
     <form id="shapeForm">
@@ -21,9 +25,7 @@
             <!-- Shape input fields will be added here dynamically -->
         </div>
         <div class="text-center">
-            <button class="btn btn-primary" onclick="plotShapes()" type="button">
-                Plot Buttons
-            </button>
+            <button class="btn btn-primary" id="plotButton" type="button">Plot Shapes</button>
         </div>
     </form>
     <hr/>
