@@ -19,6 +19,500 @@
         <h2 class="text-center my-4">Buttons and Keys</h2>
         <div class="row" id="formContainer">
             <!-- Shape input fields will be added here dynamically -->
+            <div class="col-md-3 col-lg-2 shape-input">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title text-center">UP</h5>
+                        <div class="form-group">
+                            <label for="shape0">Shape:</label>
+                            <select class="form-control" id="shape0" name="shape0" onchange="toggleDiameter(0)"
+                                    required="">
+                                <option value="key">Key</option>
+                                <option value="button">Button</option>
+                            </select>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group col-md-6">
+                                <label for="width0" id="widthLabel0">Width:</label>
+                                <input class="form-control" id="width0" name="width0" placeholder="mm" required=""
+                                       type="number">
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label for="height0" id="heightLabel0">Height:</label>
+                                <input class="form-control" id="height0" name="height0" placeholder="mm" required=""
+                                       type="number">
+                            </div>
+                        </div>
+                        <div class="form-group" id="diameterGroup0" style="display:none;">
+                            <label for="diameter0" id="diameterLabel0">Diameter:</label>
+                            <input class="form-control" id="diameter0" name="diameter0" placeholder="mm" type="number">
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group col-md-6">
+                                <label for="x0">X Position:</label>
+                                <input class="form-control" id="x0" name="x0" placeholder="mm" type="number">
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label for="y0">Y Position:</label>
+                                <input class="form-control" id="y0" name="y0" placeholder="mm" type="number">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3 col-lg-2 shape-input">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title text-center">DOWN</h5>
+                        <div class="form-group">
+                            <label for="shape1">Shape:</label>
+                            <select class="form-control" id="shape1" name="shape1" onchange="toggleDiameter(1)"
+                                    required="">
+                                <option value="key">Key</option>
+                                <option value="button">Button</option>
+                            </select>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group col-md-6">
+                                <label for="width1" id="widthLabel1">Width:</label>
+                                <input class="form-control" id="width1" name="width1" placeholder="mm" required=""
+                                       type="number">
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label for="height1" id="heightLabel1">Height:</label>
+                                <input class="form-control" id="height1" name="height1" placeholder="mm" required=""
+                                       type="number">
+                            </div>
+                        </div>
+                        <div class="form-group" id="diameterGroup1" style="display:none;">
+                            <label for="diameter1" id="diameterLabel1">Diameter:</label>
+                            <input class="form-control" id="diameter1" name="diameter1" placeholder="mm" type="number">
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group col-md-6">
+                                <label for="x1">X Position:</label>
+                                <input class="form-control" id="x1" name="x1" placeholder="mm" type="number">
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label for="y1">Y Position:</label>
+                                <input class="form-control" id="y1" name="y1" placeholder="mm" type="number">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3 col-lg-2 shape-input">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title text-center">LEFT</h5>
+                        <div class="form-group">
+                            <label for="shape2">Shape:</label>
+                            <select class="form-control" id="shape2" name="shape2" onchange="toggleDiameter(2)"
+                                    required="">
+                                <option value="key">Key</option>
+                                <option value="button">Button</option>
+                            </select>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group col-md-6">
+                                <label for="width2" id="widthLabel2">Width:</label>
+                                <input class="form-control" id="width2" name="width2" placeholder="mm" required=""
+                                       type="number">
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label for="height2" id="heightLabel2">Height:</label>
+                                <input class="form-control" id="height2" name="height2" placeholder="mm" required=""
+                                       type="number">
+                            </div>
+                        </div>
+                        <div class="form-group" id="diameterGroup2" style="display:none;">
+                            <label for="diameter2" id="diameterLabel2">Diameter:</label>
+                            <input class="form-control" id="diameter2" name="diameter2" placeholder="mm" type="number">
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group col-md-6">
+                                <label for="x2">X Position:</label>
+                                <input class="form-control" id="x2" name="x2" placeholder="mm" type="number">
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label for="y2">Y Position:</label>
+                                <input class="form-control" id="y2" name="y2" placeholder="mm" type="number">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3 col-lg-2 shape-input">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title text-center">RIGHT</h5>
+                        <div class="form-group">
+                            <label for="shape3">Shape:</label>
+                            <select class="form-control" id="shape3" name="shape3" onchange="toggleDiameter(3)"
+                                    required="">
+                                <option value="key">Key</option>
+                                <option value="button">Button</option>
+                            </select>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group col-md-6">
+                                <label for="width3" id="widthLabel3">Width:</label>
+                                <input class="form-control" id="width3" name="width3" placeholder="mm" required=""
+                                       type="number">
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label for="height3" id="heightLabel3">Height:</label>
+                                <input class="form-control" id="height3" name="height3" placeholder="mm" required=""
+                                       type="number">
+                            </div>
+                        </div>
+                        <div class="form-group" id="diameterGroup3" style="display:none;">
+                            <label for="diameter3" id="diameterLabel3">Diameter:</label>
+                            <input class="form-control" id="diameter3" name="diameter3" placeholder="mm" type="number">
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group col-md-6">
+                                <label for="x3">X Position:</label>
+                                <input class="form-control" id="x3" name="x3" placeholder="mm" type="number">
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label for="y3">Y Position:</label>
+                                <input class="form-control" id="y3" name="y3" placeholder="mm" type="number">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3 col-lg-2 shape-input">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title text-center">A</h5>
+                        <div class="form-group">
+                            <label for="shape4">Shape:</label>
+                            <select class="form-control" id="shape4" name="shape4" onchange="toggleDiameter(4)"
+                                    required="">
+                                <option value="key">Key</option>
+                                <option value="button">Button</option>
+                            </select>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group col-md-6">
+                                <label for="width4" id="widthLabel4">Width:</label>
+                                <input class="form-control" id="width4" name="width4" placeholder="mm" required=""
+                                       type="number">
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label for="height4" id="heightLabel4">Height:</label>
+                                <input class="form-control" id="height4" name="height4" placeholder="mm" required=""
+                                       type="number">
+                            </div>
+                        </div>
+                        <div class="form-group" id="diameterGroup4" style="display:none;">
+                            <label for="diameter4" id="diameterLabel4">Diameter:</label>
+                            <input class="form-control" id="diameter4" name="diameter4" placeholder="mm" type="number">
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group col-md-6">
+                                <label for="x4">X Position:</label>
+                                <input class="form-control" id="x4" name="x4" placeholder="mm" type="number">
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label for="y4">Y Position:</label>
+                                <input class="form-control" id="y4" name="y4" placeholder="mm" type="number">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3 col-lg-2 shape-input">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title text-center">B</h5>
+                        <div class="form-group">
+                            <label for="shape5">Shape:</label>
+                            <select class="form-control" id="shape5" name="shape5" onchange="toggleDiameter(5)"
+                                    required="">
+                                <option value="key">Key</option>
+                                <option value="button">Button</option>
+                            </select>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group col-md-6">
+                                <label for="width5" id="widthLabel5">Width:</label>
+                                <input class="form-control" id="width5" name="width5" placeholder="mm" required=""
+                                       type="number">
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label for="height5" id="heightLabel5">Height:</label>
+                                <input class="form-control" id="height5" name="height5" placeholder="mm" required=""
+                                       type="number">
+                            </div>
+                        </div>
+                        <div class="form-group" id="diameterGroup5" style="display:none;">
+                            <label for="diameter5" id="diameterLabel5">Diameter:</label>
+                            <input class="form-control" id="diameter5" name="diameter5" placeholder="mm" type="number">
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group col-md-6">
+                                <label for="x5">X Position:</label>
+                                <input class="form-control" id="x5" name="x5" placeholder="mm" type="number">
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label for="y5">Y Position:</label>
+                                <input class="form-control" id="y5" name="y5" placeholder="mm" type="number">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3 col-lg-2 shape-input">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title text-center">X</h5>
+                        <div class="form-group">
+                            <label for="shape6">Shape:</label>
+                            <select class="form-control" id="shape6" name="shape6" onchange="toggleDiameter(6)"
+                                    required="">
+                                <option value="key">Key</option>
+                                <option value="button">Button</option>
+                            </select>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group col-md-6">
+                                <label for="width6" id="widthLabel6">Width:</label>
+                                <input class="form-control" id="width6" name="width6" placeholder="mm" required=""
+                                       type="number">
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label for="height6" id="heightLabel6">Height:</label>
+                                <input class="form-control" id="height6" name="height6" placeholder="mm" required=""
+                                       type="number">
+                            </div>
+                        </div>
+                        <div class="form-group" id="diameterGroup6" style="display:none;">
+                            <label for="diameter6" id="diameterLabel6">Diameter:</label>
+                            <input class="form-control" id="diameter6" name="diameter6" placeholder="mm" type="number">
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group col-md-6">
+                                <label for="x6">X Position:</label>
+                                <input class="form-control" id="x6" name="x6" placeholder="mm" type="number">
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label for="y6">Y Position:</label>
+                                <input class="form-control" id="y6" name="y6" placeholder="mm" type="number">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3 col-lg-2 shape-input">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title text-center">Y</h5>
+                        <div class="form-group">
+                            <label for="shape7">Shape:</label>
+                            <select class="form-control" id="shape7" name="shape7" onchange="toggleDiameter(7)"
+                                    required="">
+                                <option value="key">Key</option>
+                                <option value="button">Button</option>
+                            </select>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group col-md-6">
+                                <label for="width7" id="widthLabel7">Width:</label>
+                                <input class="form-control" id="width7" name="width7" placeholder="mm" required=""
+                                       type="number">
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label for="height7" id="heightLabel7">Height:</label>
+                                <input class="form-control" id="height7" name="height7" placeholder="mm" required=""
+                                       type="number">
+                            </div>
+                        </div>
+                        <div class="form-group" id="diameterGroup7" style="display:none;">
+                            <label for="diameter7" id="diameterLabel7">Diameter:</label>
+                            <input class="form-control" id="diameter7" name="diameter7" placeholder="mm" type="number">
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group col-md-6">
+                                <label for="x7">X Position:</label>
+                                <input class="form-control" id="x7" name="x7" placeholder="mm" type="number">
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label for="y7">Y Position:</label>
+                                <input class="form-control" id="y7" name="y7" placeholder="mm" type="number">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3 col-lg-2 shape-input">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title text-center">LB</h5>
+                        <div class="form-group">
+                            <label for="shape8">Shape:</label>
+                            <select class="form-control" id="shape8" name="shape8" onchange="toggleDiameter(8)"
+                                    required="">
+                                <option value="key">Key</option>
+                                <option value="button">Button</option>
+                            </select>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group col-md-6">
+                                <label for="width8" id="widthLabel8">Width:</label>
+                                <input class="form-control" id="width8" name="width8" placeholder="mm" required=""
+                                       type="number">
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label for="height8" id="heightLabel8">Height:</label>
+                                <input class="form-control" id="height8" name="height8" placeholder="mm" required=""
+                                       type="number">
+                            </div>
+                        </div>
+                        <div class="form-group" id="diameterGroup8" style="display:none;">
+                            <label for="diameter8" id="diameterLabel8">Diameter:</label>
+                            <input class="form-control" id="diameter8" name="diameter8" placeholder="mm" type="number">
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group col-md-6">
+                                <label for="x8">X Position:</label>
+                                <input class="form-control" id="x8" name="x8" placeholder="mm" type="number">
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label for="y8">Y Position:</label>
+                                <input class="form-control" id="y8" name="y8" placeholder="mm" type="number">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3 col-lg-2 shape-input">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title text-center">LT</h5>
+                        <div class="form-group">
+                            <label for="shape9">Shape:</label>
+                            <select class="form-control" id="shape9" name="shape9" onchange="toggleDiameter(9)"
+                                    required="">
+                                <option value="key">Key</option>
+                                <option value="button">Button</option>
+                            </select>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group col-md-6">
+                                <label for="width9" id="widthLabel9">Width:</label>
+                                <input class="form-control" id="width9" name="width9" placeholder="mm" required=""
+                                       type="number">
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label for="height9" id="heightLabel9">Height:</label>
+                                <input class="form-control" id="height9" name="height9" placeholder="mm" required=""
+                                       type="number">
+                            </div>
+                        </div>
+                        <div class="form-group" id="diameterGroup9" style="display:none;">
+                            <label for="diameter9" id="diameterLabel9">Diameter:</label>
+                            <input class="form-control" id="diameter9" name="diameter9" placeholder="mm" type="number">
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group col-md-6">
+                                <label for="x9">X Position:</label>
+                                <input class="form-control" id="x9" name="x9" placeholder="mm" type="number">
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label for="y9">Y Position:</label>
+                                <input class="form-control" id="y9" name="y9" placeholder="mm" type="number">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3 col-lg-2 shape-input">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title text-center">RB</h5>
+                        <div class="form-group">
+                            <label for="shape10">Shape:</label>
+                            <select class="form-control" id="shape10" name="shape10" onchange="toggleDiameter(10)"
+                                    required="">
+                                <option value="key">Key</option>
+                                <option value="button">Button</option>
+                            </select>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group col-md-6">
+                                <label for="width10" id="widthLabel10">Width:</label>
+                                <input class="form-control" id="width10" name="width10" placeholder="mm" required=""
+                                       type="number">
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label for="height10" id="heightLabel10">Height:</label>
+                                <input class="form-control" id="height10" name="height10" placeholder="mm" required=""
+                                       type="number">
+                            </div>
+                        </div>
+                        <div class="form-group" id="diameterGroup10" style="display:none;">
+                            <label for="diameter10" id="diameterLabel10">Diameter:</label>
+                            <input class="form-control" id="diameter10" name="diameter10" placeholder="mm"
+                                   type="number">
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group col-md-6">
+                                <label for="x10">X Position:</label>
+                                <input class="form-control" id="x10" name="x10" placeholder="mm" type="number">
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label for="y10">Y Position:</label>
+                                <input class="form-control" id="y10" name="y10" placeholder="mm" type="number">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3 col-lg-2 shape-input">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title text-center">RT</h5>
+                        <div class="form-group">
+                            <label for="shape11">Shape:</label>
+                            <select class="form-control" id="shape11" name="shape11" onchange="toggleDiameter(11)"
+                                    required="">
+                                <option value="key">Key</option>
+                                <option value="button">Button</option>
+                            </select>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group col-md-6">
+                                <label for="width11" id="widthLabel11">Width:</label>
+                                <input class="form-control" id="width11" name="width11" placeholder="mm" required=""
+                                       type="number">
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label for="height11" id="heightLabel11">Height:</label>
+                                <input class="form-control" id="height11" name="height11" placeholder="mm" required=""
+                                       type="number">
+                            </div>
+                        </div>
+                        <div class="form-group" id="diameterGroup11" style="display:none;">
+                            <label for="diameter11" id="diameterLabel11">Diameter:</label>
+                            <input class="form-control" id="diameter11" name="diameter11" placeholder="mm"
+                                   type="number">
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group col-md-6">
+                                <label for="x11">X Position:</label>
+                                <input class="form-control" id="x11" name="x11" placeholder="mm" type="number">
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label for="y11">Y Position:</label>
+                                <input class="form-control" id="y11" name="y11" placeholder="mm" type="number">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
         <div class="text-center">
             <button class="btn btn-primary" onclick="plotShapes()" type="button">
@@ -156,7 +650,6 @@
             Save Configuration
         </button>
     </div>
-    <input accept=".json" id="jsonFileInput" type="file">
     <div class="mt-4 mx-auto" id="canvas"></div>
 </div>
 
