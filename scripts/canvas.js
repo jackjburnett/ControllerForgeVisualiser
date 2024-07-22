@@ -1,4 +1,4 @@
-import shapeLabels from "./shapelabels.js";
+import _buttonLabels from "./_buttonLabels.js";
 
 let zoomFactor = 1; // Default zoom factor
 let baseWidth = 215; // Default base width
@@ -24,7 +24,7 @@ export function plotShapes() {
     parseFloat(document.getElementById("zoomFactor").value) || 1;
   canvas.innerHTML = ""; // Clear the canvas
 
-  shapeLabels.forEach((label, i) => {
+  _buttonLabels.forEach((label, i) => {
     const shape = document.getElementById(`shape${i}`).value;
     let x = document.getElementById(`x${i}`).value;
     let y = document.getElementById(`y${i}`).value;

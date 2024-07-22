@@ -1,4 +1,4 @@
-import shapeLabels from "./shapelabels";
+import _buttonLabels from "./_buttonLabels";
 
 function saveConfigurationToJson() {
   // Gather all variables
@@ -17,9 +17,9 @@ function saveConfigurationToJson() {
   };
 
   // Iterate over shape inputs
-  for (let i = 0; i < shapeLabels.length; i++) {
+  for (let i = 0; i < _buttonLabels.length; i++) {
     if (document.getElementById(`shape-${i}`).value === "button") {
-      configuration.buttons[shapeLabels[i]] = {
+      configuration.buttons[_buttonLabels[i]] = {
         x: document.getElementById(`x-${i}`).value,
         y: document.getElementById(`y-${i}`).value,
         diameter: document.getElementById(`diameter-${i}`).value,
@@ -38,7 +38,7 @@ function saveConfigurationToJson() {
         },
       };
     } else {
-      configuration.keys[shapeLabels[i]] = {
+      configuration.keys[_buttonLabels[i]] = {
         x: document.getElementById(`x-${i}`).value,
         y: document.getElementById(`y-${i}`).value,
         bevel: true,

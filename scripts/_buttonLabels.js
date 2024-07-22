@@ -1,4 +1,4 @@
-const shapeLabels = [
+const _buttonLabels = [
   "UP",
   "DOWN",
   "LEFT",
@@ -13,4 +13,4 @@ const shapeLabels = [
   "RT",
 ];
 
-export default shapeLabels;
+export default _buttonLabels;

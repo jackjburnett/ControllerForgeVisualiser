@@ -1,4 +1,4 @@
-import { initializeForm } from "./shapes.js";
+import { initializeForm } from "./buttons.js";
 import { plotShapes } from "./canvas.js";
 
 // Initialize the form and set up event listeners

@@ -1,4 +1,4 @@
-import shapeLabels from "./shapelabels.js";
+import _buttonLabels from "./_buttonLabels.js";
 
 function createShapeInput(label) {
   const div = document.createElement("div");
@@ -61,7 +61,7 @@ function toggleDiameter(label) {
 
 export function initializeForm() {
   const container = document.getElementById("shapeInputsContainer");
-  shapeLabels.forEach((label) => {
+  _buttonLabels.forEach((label) => {
     const sanitizedLabel = label.toUpperCase(); // Sanitize the label for IDs
     container.appendChild(createShapeInput(sanitizedLabel));
   });
