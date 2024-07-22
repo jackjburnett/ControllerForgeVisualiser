@@ -1,6 +1,6 @@
 import _buttonLabels from "./_buttonLabels.js";
 
-function createShapeInput(label) {
+function createButtonInput(label) {
   const div = document.createElement("div");
   div.className = "col-sm-6 col-md-3 col-lg-2 shape-input";
   div.innerHTML = `
@@ -60,9 +60,9 @@ function toggleDiameter(label) {
 }
 
 export function initializeForm() {
-  const container = document.getElementById("shapeInputsContainer");
+  const container = document.getElementById("buttonInputsContainer");
   _buttonLabels.forEach((label) => {
     const sanitizedLabel = label.toUpperCase(); // Sanitize the label for IDs
-    container.appendChild(createShapeInput(sanitizedLabel));
+    container.appendChild(createButtonInput(sanitizedLabel));
   });
 }

@@ -14,3 +14,14 @@ function initialize() {
 
 // Run the initialize function once the DOM is fully loaded
 document.addEventListener("DOMContentLoaded", initialize);
+
+// Example in scripts/index.js
+document.getElementById("plotButton").addEventListener("click", plotButtons);
+document.getElementById("lcdForm").addEventListener("submit", addLCD);
+document.getElementById("usbForm").addEventListener("submit", addUSB);
+document
+  .getElementById("baseSizeForm")
+  .addEventListener("submit", applyBaseSizeAndZoom);
+document
+  .querySelector(".btn-success")
+  .addEventListener("click", saveConfiguration);
