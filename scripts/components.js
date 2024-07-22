@@ -1,6 +1,6 @@
 import _componentLabels from "./_componentLabels";
-// scripts/forms.js
 
+// TODO: Complete rework
 document.addEventListener("DOMContentLoaded", () => {
   function createForm(component) {
     const formId = `${component}Form`;
