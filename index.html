@@ -1,4 +1,3 @@
-<!-- TODO: Full code rewrite -->
 <!doctype html>
 <html lang="en">
 <head>
@@ -18,7 +17,7 @@
     <link href="Visualiser.png" rel="icon" type="image/x-icon"/>
 </head>
 <body>
-<div class="container">
+<div class="container-fluid">
     <h1 class="text-center my-4">ControllerForge Visualiser</h1>
     <div class="mt-4 mx-auto" id="canvas"></div>
     <form id="buttonForm">
@@ -27,14 +26,21 @@
             <!-- Button input fields are added using buttons.js -->
         </div>
         <div class="text-center">
-            <button class="btn btn-primary" id="plotButton" type="button">Plot Buttons</button>
+            <button class="btn btn-primary" id="plotButtons" type="button">Plot Buttons</button>
         </div>
     </form>
     <hr/>
-    <div class="row" id="componentsContainer">
-        <!-- Component input fields are added using components.js -->
-    </div>
+    <form id="componentsForms">
+        <h2 class="text-center my-4">Additional Components</h2>
+        <div class="row" id="componentsContainer">
+            <!-- Component input fields are added using components.js -->
+        </div>
+        <div class="text-center">
+            <button class="btn btn-primary" id="plotComponents" type="button">Plot Components</button>
+        </div>
+    </form>
     <hr/>
+    <!-- TODO: Rework Base-->
     <h2 class="text-center my-4">Base Size</h2>
     <form class="form-inline" id="baseSizeForm">
         <div class="form-group mx-sm-3 mb-2">
@@ -53,6 +59,7 @@
         <button class="btn btn-primary mb-2" type="button">Apply Base Size & Zoom</button>
     </form>
     <!-- Save Configuration Button -->
+    <!-- TODO: Rework Save and Load -->
     <div class="text-center mt-4">
         <button class="btn btn-success" type="button">Save Configuration</button>
     </div>

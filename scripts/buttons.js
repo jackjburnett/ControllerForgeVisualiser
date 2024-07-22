@@ -2,7 +2,7 @@ import _buttonLabels from "./_buttonLabels.js";
 
 function createButtonInput(label) {
   const div = document.createElement("div");
-  div.className = "col-sm-6 col-md-3 col-lg-2 shape-input";
+  div.className = "col-sm-6 col-md-4 col-lg-3 col-xl-2 shape-input";
   div.innerHTML = `
         <div class="card">
             <div class="card-body">
@@ -15,11 +15,11 @@ function createButtonInput(label) {
                     </select>
                 </div>
                 <div class="form-row">
-                    <div class="form-group col-md-6">
+                    <div class="form-group col-sm-6">
                         <label for="width-${label}" id="widthLabel-${label}">Width:</label>
                         <input type="number" class="form-control" id="width-${label}" name="width-${label}" placeholder="mm" required>
                     </div>
-                    <div class="form-group col-md-6">
+                    <div class="form-group col-sm-6">
                         <label for="height-${label}" id="heightLabel-${label}">Height:</label>
                         <input type="number" class="form-control" id="height-${label}" name="height-${label}" placeholder="mm" required>
                     </div>
@@ -29,12 +29,12 @@ function createButtonInput(label) {
                     <input type="number" class="form-control" id="diameter-${label}" name="diameter-${label}" placeholder="mm">
                 </div>
                 <div class="form-row">
-                    <div class="form-group col-md-6">
-                        <label for="x-${label}">X Position:</label>
+                    <div class="form-group col-sm-6">
+                        <label for="x-${label}">X:</label>
                         <input type="number" class="form-control" id="x${label}" name="x-${label}" placeholder="mm">
                     </div>
-                    <div class="form-group col-md-6">
-                        <label for="y-${label}">Y Position:</label>
+                    <div class="form-group col-sm-6">
+                        <label for="y-${label}">Y:</label>
                         <input type="number" class="form-control" id="y-${label}" name="y-${label}" placeholder="mm">
                     </div>
                 </div>
