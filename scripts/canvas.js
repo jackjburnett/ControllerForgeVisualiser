@@ -21,17 +21,17 @@ function applyBaseSizeAndZoom() {
   plotShapes(); // Re-plot shapes after applying base size and zoom
 }
 
-export function plotShapes() {
+export function plotButtons() {
   const canvas = document.getElementById("canvas");
   const baseHeight = canvas.offsetHeight; // Assuming baseHeight is defined somewhere
   const zoomFactor =
     parseFloat(document.getElementById("zoomFactor").value) || 1;
   canvas.innerHTML = ""; // Clear the canvas
 
-  _buttonLabels.forEach((label, i) => {
-    const shape = document.getElementById(`shape${i}`).value;
-    let x = document.getElementById(`x${i}`).value;
-    let y = document.getElementById(`y${i}`).value;
+  _buttonLabels.forEach((label) => {
+    const shape = document.getElementById(`shape-${label}`).value;
+    let x = document.getElementById(`x-${label}`).value;
+    let y = document.getElementById(`y-${label}`).value;
 
     if (x === "" || y === "") return;
 
@@ -43,15 +43,15 @@ export function plotShapes() {
     shapeElement.className = "shape " + shape;
 
     if (shape === "button") {
-      let diameter = document.getElementById(`diameter${i}`).value;
+      let diameter = document.getElementById(`diameter-${label}`).value;
       diameter = parseInt(diameter) * zoomFactor;
       shapeElement.style.width = diameter + "px";
       shapeElement.style.height = diameter + "px";
       x -= diameter / 2; // Center x position for button
       y = baseHeight * zoomFactor - y - diameter / 2; // Center y position for button
     } else {
-      let width = document.getElementById(`width${i}`).value;
-      let height = document.getElementById(`height${i}`).value;
+      let width = document.getElementById(`width-${label}`).value;
+      let height = document.getElementById(`height-${label}`).value;
       width = parseInt(width) * zoomFactor;
       height = parseInt(height) * zoomFactor;
       shapeElement.style.width = width + "px";

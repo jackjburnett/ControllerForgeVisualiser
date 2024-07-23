@@ -1,5 +1,5 @@
 import { initializeForm, toggleDiameter } from "./buttons.js";
-import { plotShapes } from "./canvas.js";
+import { plotButtons } from "./canvas.js";
 
 // Initialize the form and set up event listeners
 function initialize() {
