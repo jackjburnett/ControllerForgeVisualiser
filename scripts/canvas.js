@@ -8,10 +8,13 @@ let zoomFactor = 1; // Default zoom factor
 let baseWidth = 215; // Default base width
 let baseHeight = 120; // Default base height
 
-function applyBaseSizeAndZoom() {
-  baseWidth = document.getElementById("baseWidth").value || baseWidth;
-  baseHeight = document.getElementById("baseHeight").value || baseHeight;
-  zoomFactor = document.getElementById("zoomFactor").value || zoomFactor;
+export function applyBaseSizeAndZoom() {
+  baseWidth =
+    parseFloat(document.getElementById("baseWidth").value) || baseWidth;
+  baseHeight =
+    parseFloat(document.getElementById("baseHeight").value) || baseHeight;
+  zoomFactor =
+    parseFloat(document.getElementById("zoomFactor").value) || zoomFactor;
 
   // Adjust canvas size based on baseWidth and baseHeight multiplied by zoomFactor
   const canvas = document.getElementById("canvas");
