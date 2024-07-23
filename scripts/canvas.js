@@ -27,7 +27,7 @@ export function applyBaseSizeAndZoom() {
 export function plotButtons() {
   const canvas = document.getElementById("canvas");
   if (!canvas) {
-    console.error("Canvas element not found");
+    console.error("Canvas element not found, please reload.");
     return;
   }
 
