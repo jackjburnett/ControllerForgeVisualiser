@@ -1,4 +1,4 @@
-import { initializeForm } from "./buttons.js";
+import { initializeForm, toggleDiameter } from "./buttons.js";
 import { plotShapes } from "./canvas.js";
 
 // Initialize the form and set up event listeners

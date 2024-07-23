@@ -38,13 +38,17 @@ function createButtonInput(label) {
                         <input type="number" class="form-control" id="y-${label}" name="y-${label}" placeholder="mm">
                     </div>
                 </div>
+                <div class="form-group">
+                    <label for="rotation-${label}" id="rotationLabel-${label}">Rotation:</label>
+                    <input type="number" class="form-control" id="rotation-${label}" name="rotation-${label}" placeholder="°">
+                </div>
             </div>
         </div>
     `;
   return div;
 }
 
-function toggleDiameter(label) {
+export function toggleDiameter(label) {
   const shape = document.getElementById(`shape-${label}`).value;
   const widthHeightGroup = document.getElementById(`widthLabel-${label}`)
     .parentNode.parentNode;
