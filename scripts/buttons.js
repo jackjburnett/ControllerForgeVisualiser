@@ -9,7 +9,7 @@ function createButtonInput(label) {
                 <h5 class="card-title text-center">${label}</h5>
                 <div class="form-group">
                     <label for="shape-${label}">Shape:</label>
-                    <select class="form-control" id="shape-${label}" name="shape-${label}" onchange="toggleDiameter(${label})" required>
+                    <select class="form-control" id="shape-${label}" name="shape-${label}" required>
                         <option value="key">Key</option>
                         <option value="button">Button</option>
                     </select>
@@ -68,5 +68,11 @@ export function initializeForm() {
   _buttonLabels.forEach((label) => {
     const sanitizedLabel = label.toUpperCase(); // Sanitize the label for IDs
     container.appendChild(createButtonInput(sanitizedLabel));
+
+    // Add event listener for the dropdown after creating the input
+    const dropdown = document.getElementById(`shape-${sanitizedLabel}`);
+    if (dropdown) {
+      dropdown.addEventListener("change", () => toggleDiameter(sanitizedLabel));
+    }
   });
 }
