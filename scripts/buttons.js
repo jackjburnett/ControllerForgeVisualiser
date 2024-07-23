@@ -14,7 +14,7 @@ function createButtonInput(label) {
                         <option value="button">Button</option>
                     </select>
                 </div>
-                <div class="form-row">
+                <div class="form-row" id="widthHeightGroup-${label}">
                     <div class="form-group col-sm-6">
                         <label for="width-${label}" id="widthLabel-${label}">Width:</label>
                         <input type="number" class="form-control" id="width-${label}" name="width-${label}" placeholder="mm" required>
@@ -50,15 +50,14 @@ function createButtonInput(label) {
 
 export function toggleDiameter(label) {
   const shape = document.getElementById(`shape-${label}`).value;
-  const widthHeightGroup = document.getElementById(`widthLabel-${label}`)
-    .parentNode.parentNode;
+  const widthHeightGroup = document.getElementById(`widthHeightGroup-${label}`);
   const diameterGroup = document.getElementById(`diameterGroup-${label}`);
 
   if (shape === "button") {
     widthHeightGroup.style.display = "none";
     diameterGroup.style.display = "block";
   } else {
-    widthHeightGroup.style.display = "block";
+    widthHeightGroup.style.display = "flex";
     diameterGroup.style.display = "none";
   }
 }
