@@ -1,4 +1,5 @@
 import _buttonLabels from "./_buttonLabels.js";
+import _componentLabels from "./_componentLabels.js";
 
 let zoomFactor = 1; // Default zoom factor
 let baseWidth = 215; // Default base width
@@ -18,6 +19,7 @@ export function applyBaseSizeAndZoom() {
   canvas.style.height = baseHeight * zoomFactor + "px";
 
   plotButtons();
+  plotComponents();
 }
 
 export function plotButtons() {
@@ -125,3 +127,4 @@ export function plotButtons() {
 }
 
 // TODO: Plot Components
+export function plotComponents() {}
