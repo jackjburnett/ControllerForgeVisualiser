@@ -1,5 +1,6 @@
 import _buttonLabels from "./_buttonLabels.js";
 
+// TODO: Plot components
 // TODO: Convert to dictionary
 let currentLCD = null; // Variable to store the current LCD element
 let currentUSB = null; // Variable to store the current USB element
