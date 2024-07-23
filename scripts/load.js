@@ -1,5 +1,6 @@
 import _buttonLabels from "./_buttonLabels.js";
 import { toggleDiameter } from "./buttons.js";
+import { plotButtons } from "./canvas.js";
 
 export function loadConfiguration(event) {
   const fileInput = event.target;
@@ -79,6 +80,8 @@ export function loadConfiguration(event) {
           }
         }
       });
+
+      plotButtons();
       // Process the JSON data (e.g., update UI, save to application state)
     } catch (error) {
       console.error("Error parsing JSON:", error);
