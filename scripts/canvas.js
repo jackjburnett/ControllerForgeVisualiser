@@ -21,62 +21,101 @@ export function applyBaseSizeAndZoom() {
   canvas.style.width = baseWidth * zoomFactor + "px";
   canvas.style.height = baseHeight * zoomFactor + "px";
 
-  plotButtons(); // Re-plot shapes after applying base size and zoom
+  plotButtons();
 }
 
 export function plotButtons() {
+  // Select the canvas
   const canvas = document.getElementById("canvas");
   if (!canvas) {
     console.error("Canvas element not found, please reload.");
     return;
   }
 
-  const baseHeight = canvas.offsetHeight;
-  const zoomFactor =
-    parseFloat(document.getElementById("zoomFactor").value) || 1;
-  canvas.innerHTML = ""; // Clear the canvas
+  // Clear the canvas by removing all child elements
+  while (canvas.firstChild) {
+    canvas.removeChild(canvas.firstChild);
+  }
 
   _buttonLabels.forEach((label) => {
-    const shape = document.getElementById(`shape-${label}`).value;
-    let x = document.getElementById(`x-${label}`).value;
-    let y = document.getElementById(`y-${label}`).value;
+    label = label.toUpperCase();
 
-    if (x === "" || y === "") return;
+    const shapeElement = document.getElementById(`shape-${label}`);
+    const xElement = document.getElementById(`x-${label}`);
+    const yElement = document.getElementById(`y-${label}`);
 
-    // Convert values to integers and multiply by zoom factor
-    x = parseInt(x, 10) * zoomFactor;
-    y = parseInt(y, 10) * zoomFactor;
+    if (!shapeElement || !xElement || !yElement) {
+      console.error(`Missing elements for label: ${label}`);
+      return;
+    }
 
-    let shapeElement = document.createElement("div");
-    shapeElement.className = "shape " + shape;
-    shapeElement.style.position = "absolute"; // Ensure positioning is absolute
+    const shape = shapeElement.value;
+    let x = parseFloat(xElement.value);
+    let y = parseFloat(yElement.value);
+
+    if (isNaN(x) || isNaN(y)) {
+      console.error(`Invalid position values for label: ${label}`);
+      return;
+    }
+
+    x *= zoomFactor;
+    y *= zoomFactor;
+
+    const shapeDiv = document.createElement("div");
+    shapeDiv.className = "shape " + shape;
+    shapeDiv.style.position = "absolute"; // Ensure positioning is absolute
 
     if (shape === "button") {
-      let diameter = document.getElementById(`diameter-${label}`).value;
-      diameter = parseInt(diameter, 10) * zoomFactor;
-      shapeElement.style.width = diameter + "px";
-      shapeElement.style.height = diameter + "px";
+      const diameterElement = document.getElementById(`diameter-${label}`);
+      if (!diameterElement) {
+        console.error(`Missing diameter element for label: ${label}`);
+        return;
+      }
+
+      let diameter = parseFloat(diameterElement.value);
+      if (isNaN(diameter)) {
+        console.error(`Invalid diameter value for label: ${label}`);
+        return;
+      }
+
+      diameter *= zoomFactor;
+      shapeDiv.style.width = diameter + "px";
+      shapeDiv.style.height = diameter + "px";
       x -= diameter / 2; // Center x position for button
       y = baseHeight * zoomFactor - y - diameter / 2; // Center y position for button
     } else if (shape === "key") {
-      let width = document.getElementById(`width-${label}`).value;
-      let height = document.getElementById(`height-${label}`).value;
-      width = parseInt(width, 10) * zoomFactor;
-      height = parseInt(height, 10) * zoomFactor;
-      shapeElement.style.width = width + "px";
-      shapeElement.style.height = height + "px";
+      const widthElement = document.getElementById(`width-${label}`);
+      const heightElement = document.getElementById(`height-${label}`);
+
+      if (!widthElement || !heightElement) {
+        console.error(`Missing width or height element for label: ${label}`);
+        return;
+      }
+
+      let width = parseFloat(widthElement.value);
+      let height = parseFloat(heightElement.value);
+
+      if (isNaN(width) || isNaN(height)) {
+        console.error(`Invalid width or height values for label: ${label}`);
+        return;
+      }
+
+      width *= zoomFactor;
+      height *= zoomFactor;
+      shapeDiv.style.width = width + "px";
+      shapeDiv.style.height = height + "px";
       x -= width / 2; // Center x position for rectangle or other shapes
       y = baseHeight * zoomFactor - y - height / 2; // Center y position for rectangle or other shapes
     }
 
-    shapeElement.style.left = x + "px";
-    shapeElement.style.top = y + "px";
-    shapeElement.innerHTML = `<span>${label}</span>`;
-    shapeElement.style.display = "flex";
-    shapeElement.style.alignItems = "center";
-    shapeElement.style.justifyContent = "center";
+    shapeDiv.style.left = x + "px";
+    shapeDiv.style.top = y + "px";
+    shapeDiv.innerHTML = `<span>${label}</span>`;
+    shapeDiv.style.display = "flex";
+    shapeDiv.style.alignItems = "center";
+    shapeDiv.style.justifyContent = "center";
 
-    canvas.appendChild(shapeElement);
+    canvas.appendChild(shapeDiv);
   });
 }
 

@@ -10,11 +10,11 @@ function createButtonInput(label) {
                 <div class="form-group">
                     <label for="shape-${label}">Shape:</label>
                     <select class="form-control" id="shape-${label}" name="shape-${label}" required>
-                        <option value="key">Key</option>
                         <option value="button">Button</option>
+                        <option value="key">Key</option>
                     </select>
                 </div>
-                <div class="form-row" id="widthHeightGroup-${label}">
+                <div class="form-row" id="widthHeightGroup-${label}" style="display:none;">
                     <div class="form-group col-sm-6">
                         <label for="width-${label}" id="widthLabel-${label}">Width:</label>
                         <input type="number" class="form-control" id="width-${label}" name="width-${label}" placeholder="mm" required>
@@ -24,14 +24,14 @@ function createButtonInput(label) {
                         <input type="number" class="form-control" id="height-${label}" name="height-${label}" placeholder="mm" required>
                     </div>
                 </div>
-                <div class="form-group" id="diameterGroup-${label}" style="display:none;">
+                <div class="form-group" id="diameterGroup-${label}">
                     <label for="diameter-${label}" id="diameterLabel-${label}">Diameter:</label>
                     <input type="number" class="form-control" id="diameter-${label}" name="diameter-${label}" placeholder="mm">
                 </div>
                 <div class="form-row">
                     <div class="form-group col-sm-6">
                         <label for="x-${label}">X:</label>
-                        <input type="number" class="form-control" id="x${label}" name="x-${label}" placeholder="mm">
+                        <input type="number" class="form-control" id="x-${label}" name="x-${label}" placeholder="mm">
                     </div>
                     <div class="form-group col-sm-6">
                         <label for="y-${label}">Y:</label>
