@@ -9,7 +9,8 @@
 
 .shape {
     position: absolute;
-    box-sizing: border-box;
+    background-color: #eee; /* Background color for visibility */
+    border: 1px solid #333; /* Border for visibility */
 }
 
 .square {

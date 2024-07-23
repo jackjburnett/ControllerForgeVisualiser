@@ -18,12 +18,17 @@ function applyBaseSizeAndZoom() {
   canvas.style.width = baseWidth * zoomFactor + "px";
   canvas.style.height = baseHeight * zoomFactor + "px";
 
-  plotShapes(); // Re-plot shapes after applying base size and zoom
+  plotButtons(); // Re-plot shapes after applying base size and zoom
 }
 
 export function plotButtons() {
   const canvas = document.getElementById("canvas");
-  const baseHeight = canvas.offsetHeight; // Assuming baseHeight is defined somewhere
+  if (!canvas) {
+    console.error("Canvas element not found");
+    return;
+  }
+
+  const baseHeight = canvas.offsetHeight;
   const zoomFactor =
     parseFloat(document.getElementById("zoomFactor").value) || 1;
   canvas.innerHTML = ""; // Clear the canvas
@@ -36,24 +41,25 @@ export function plotButtons() {
     if (x === "" || y === "") return;
 
     // Convert values to integers and multiply by zoom factor
-    x = parseInt(x) * zoomFactor;
-    y = parseInt(y) * zoomFactor;
+    x = parseInt(x, 10) * zoomFactor;
+    y = parseInt(y, 10) * zoomFactor;
 
     let shapeElement = document.createElement("div");
     shapeElement.className = "shape " + shape;
+    shapeElement.style.position = "absolute"; // Ensure positioning is absolute
 
     if (shape === "button") {
       let diameter = document.getElementById(`diameter-${label}`).value;
-      diameter = parseInt(diameter) * zoomFactor;
+      diameter = parseInt(diameter, 10) * zoomFactor;
       shapeElement.style.width = diameter + "px";
       shapeElement.style.height = diameter + "px";
       x -= diameter / 2; // Center x position for button
       y = baseHeight * zoomFactor - y - diameter / 2; // Center y position for button
-    } else {
+    } else if (shape === "key") {
       let width = document.getElementById(`width-${label}`).value;
       let height = document.getElementById(`height-${label}`).value;
-      width = parseInt(width) * zoomFactor;
-      height = parseInt(height) * zoomFactor;
+      width = parseInt(width, 10) * zoomFactor;
+      height = parseInt(height, 10) * zoomFactor;
       shapeElement.style.width = width + "px";
       shapeElement.style.height = height + "px";
       x -= width / 2; // Center x position for rectangle or other shapes
