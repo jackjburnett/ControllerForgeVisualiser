@@ -3,6 +3,8 @@ import { initializeComponents } from "./components.js";
 import { plotButtons, plotComponents, applyBaseSizeAndZoom } from "./canvas.js";
 import { saveConfiguration } from "./save.js";
 import { loadConfiguration } from "./load.js";
+import _buttonLabels from "./_buttonLabels.js";
+import _componentLabels from "./_componentLabels.js";
 
 // Initialize the form and set up event listeners
 function initialize() {
