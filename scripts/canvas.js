@@ -43,6 +43,7 @@ export function plotButtons() {
     const shapeElement = document.getElementById(`shape-${label}`);
     const xElement = document.getElementById(`x-${label}`);
     const yElement = document.getElementById(`y-${label}`);
+    const rotationElement = document.getElementById(`rotation-${label}`);
 
     if (!shapeElement || !xElement || !yElement) {
       console.error(`Missing elements for label: ${label}`);
@@ -52,6 +53,7 @@ export function plotButtons() {
     const shape = shapeElement.value;
     let x = parseFloat(xElement.value);
     let y = parseFloat(yElement.value);
+    let rotation = parseFloat(rotationElement.value);
 
     if (isNaN(x) || isNaN(y)) {
       console.error(`Invalid position values for label: ${label}`);
@@ -60,6 +62,11 @@ export function plotButtons() {
 
     x *= zoomFactor;
     y *= zoomFactor;
+
+    // Default rotation to 0 if not provided or invalid
+    if (isNaN(rotation)) {
+      rotation = 0;
+    }
 
     const shapeDiv = document.createElement("div");
     shapeDiv.className = "shape " + shape;
@@ -81,6 +88,7 @@ export function plotButtons() {
       diameter *= zoomFactor;
       shapeDiv.style.width = diameter + "px";
       shapeDiv.style.height = diameter + "px";
+      shapeDiv.style.borderRadius = "50%";
       x -= diameter / 2; // Center x position for button
       y = baseHeight * zoomFactor - y - diameter / 2; // Center y position for button
     } else if (shape === "key") {
@@ -110,6 +118,7 @@ export function plotButtons() {
 
     shapeDiv.style.left = x + "px";
     shapeDiv.style.top = y + "px";
+    shapeDiv.style.transform = `rotate(${rotation}deg)`;
     shapeDiv.innerHTML = `<span>${label}</span>`;
     shapeDiv.style.display = "flex";
     shapeDiv.style.alignItems = "center";
