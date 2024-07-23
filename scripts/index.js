@@ -1,10 +1,13 @@
-import { initializeForm } from "./buttons.js";
+import { initializeButtons } from "./buttons.js";
+import { initializeComponents } from "./components.js";
 import { plotButtons, applyBaseSizeAndZoom } from "./canvas.js";
+import { saveConfiguration } from "./save.js";
 
 // Initialize the form and set up event listeners
 function initialize() {
-  initializeForm();
+  initializeButtons();
   applyBaseSizeAndZoom();
+  initializeComponents();
 }
 
 document.addEventListener("DOMContentLoaded", initialize);
@@ -12,9 +15,7 @@ document
   .getElementById("baseButton")
   .addEventListener("click", applyBaseSizeAndZoom);
 document.getElementById("plotButton").addEventListener("click", plotButtons);
-document.getElementById("lcdForm").addEventListener("submit", addLCD);
-document.getElementById("usbForm").addEventListener("submit", addUSB);
-
 document
-  .querySelector(".btn-success")
+  .getElementById("saveButton")
   .addEventListener("click", saveConfiguration);
+// document.getElementById("plotComponents").addEventListener("click", plotComponents);

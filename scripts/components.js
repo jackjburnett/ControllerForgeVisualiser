@@ -1,87 +1,32 @@
-import _componentLabels from "./_componentLabels";
+import _componentLabels from "./_componentLabels.js";
 
-// TODO: Complete rework
-document.addEventListener("DOMContentLoaded", () => {
-  function createForm(component) {
-    const formId = `${component}Form`;
-    const title = `${component} Screen`;
-    const fields = [
-      {
-        id: `${component.toLowerCase()}X`,
-        name: `${component.toLowerCase()}X`,
-        label: "X Position:",
-        placeholder: "mm",
-      },
-      {
-        id: `${component.toLowerCase()}Y`,
-        name: `${component.toLowerCase()}Y`,
-        label: "Y Position:",
-        placeholder: "mm",
-      },
-    ];
+function createComponentInput(label) {
+  const div = document.createElement("div");
+  div.className = "col-sm-6 component-input";
+  div.innerHTML = `
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title text-center">${label}</h5>
+                <div class="form-row">
+                    <div class="form-group col-sm-6">
+                        <label for="x-${label}">X:</label>
+                        <input type="number" class="form-control" id="x-${label}" name="x-${label}" placeholder="mm">
+                    </div>
+                    <div class="form-group col-sm-6">
+                        <label for="y-${label}">Y:</label>
+                        <input type="number" class="form-control" id="y-${label}" name="y-${label}" placeholder="mm">
+                    </div>
+                </div>
+            </div>
+        </div>
+    `;
+  return div;
+}
 
-    // Create form container
-    const formContainer = document.createElement("div");
-    formContainer.className = "border rounded p-3 col-md-6";
-
-    // Create form
-    const form = document.createElement("form");
-    form.id = formId;
-
-    // Create form title
-    const formTitle = document.createElement("h2");
-    formTitle.className = "text-center my-4";
-    formTitle.textContent = title;
-    form.appendChild(formTitle);
-
-    // Create form fields
-    fields.forEach((field) => {
-      const formGroup = document.createElement("div");
-      formGroup.className = "form-group";
-
-      const label = document.createElement("label");
-      label.htmlFor = field.id;
-      label.textContent = field.label;
-      formGroup.appendChild(label);
-
-      const input = document.createElement("input");
-      input.className = "form-control";
-      input.id = field.id;
-      input.name = field.name;
-      input.placeholder = field.placeholder;
-      input.required = true;
-      input.type = "number";
-      formGroup.appendChild(input);
-
-      form.appendChild(formGroup);
-    });
-
-    // Create submit button
-    const button = document.createElement("button");
-    button.className = "btn btn-primary mb-2";
-    button.textContent = `Add ${component}`;
-    button.type = "button";
-    button.addEventListener("click", () => {
-      // Define handlers for each component
-      if (component === "LCD") {
-        addLCD();
-      } else if (component === "USB") {
-        addUSB();
-      }
-    });
-    form.appendChild(button);
-
-    formContainer.appendChild(form);
-
-    return formContainer;
-  }
-
-  // Container for forms
-  const formContainer = document.getElementById("formContainer");
-
-  // Create and inject forms
-  _componentLabels.forEach((component) => {
-    const form = createForm(component);
-    formContainer.appendChild(form);
+export function initializeComponents() {
+  const container = document.getElementById("componentsContainer");
+  _componentLabels.forEach((label) => {
+    const sanitizedLabel = label.toUpperCase(); // Sanitize the label for IDs
+    container.appendChild(createComponentInput(sanitizedLabel));
   });
-});
+}

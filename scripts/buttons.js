@@ -2,7 +2,7 @@ import _buttonLabels from "./_buttonLabels.js";
 
 function createButtonInput(label) {
   const div = document.createElement("div");
-  div.className = "col-sm-6 col-md-4 col-lg-3 col-xl-2 shape-input";
+  div.className = "col-sm-6 col-md-4 col-lg-3 col-xl-2 button-input";
   div.innerHTML = `
         <div class="card">
             <div class="card-body">
@@ -62,7 +62,7 @@ export function toggleDiameter(label) {
   }
 }
 
-export function initializeForm() {
+export function initializeButtons() {
   const container = document.getElementById("buttonInputsContainer");
   _buttonLabels.forEach((label) => {
     const sanitizedLabel = label.toUpperCase(); // Sanitize the label for IDs

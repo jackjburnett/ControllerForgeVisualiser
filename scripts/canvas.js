@@ -129,25 +129,6 @@ export function plotButtons() {
 }
 
 function addLCD() {
-  const lcdXInput = document.getElementById("lcdX");
-  const lcdYInput = document.getElementById("lcdY");
-  const zoomFactorInput = document.getElementById("zoomFactor");
-
-  // Validate inputs
-  const lcdX = parseFloat(lcdXInput.value);
-  const lcdY = parseFloat(lcdYInput.value);
-  if (isNaN(lcdX) || isNaN(lcdY)) {
-    alert("Please enter valid numeric values for X and Y positions.");
-    return;
-  }
-
-  // Get zoom factor
-  const zoomFactor = parseFloat(zoomFactorInput.value) || 1;
-
-  // Calculate scaled positions
-  const lcdWidth = 25 * zoomFactor; // LCD element width
-  const lcdHeight = 20 * zoomFactor; // LCD element height
-
   // Calculate position relative to LCD middle
   const scaledX = Math.round(lcdX * zoomFactor - lcdWidth / 2);
   const canvasHeight = document.getElementById("canvas").clientHeight;

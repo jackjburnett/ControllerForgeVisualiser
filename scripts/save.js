@@ -1,4 +1,4 @@
-import _buttonLabels from "./_buttonLabels";
+import _buttonLabels from "./_buttonLabels.js";
 
 function saveConfigurationToJson() {
   // Gather all variables
@@ -9,20 +9,49 @@ function saveConfigurationToJson() {
 
   configuration.base = {
     height: 50,
-    width: baseWidth,
-    length: baseHeight,
+    width: parseFloat(document.getElementById("baseWidth").value) || 0,
+    length: parseFloat(document.getElementById("baseHeight").value) || 0,
     thickness: 4,
     bevel: true,
     screw_diameter: 0,
   };
 
   // Iterate over shape inputs
-  for (let i = 0; i < _buttonLabels.length; i++) {
-    if (document.getElementById(`shape-${i}`).value === "button") {
-      configuration.buttons[_buttonLabels[i]] = {
-        x: document.getElementById(`x-${i}`).value,
-        y: document.getElementById(`y-${i}`).value,
-        diameter: document.getElementById(`diameter-${i}`).value,
+  _buttonLabels.forEach((label) => {
+    let shape = document.getElementById(`shape-${label}`);
+    let x = document.getElementById(`x-${label}`);
+    let y = document.getElementById(`y-${label}`);
+
+    if (!shape || !x || !y) {
+      console.error(`Missing elements for label: ${label}`);
+      return;
+    }
+
+    shape = shape.value;
+    x = parseFloat(x.value);
+    y = parseFloat(y.value);
+    if (isNaN(x) || isNaN(y)) {
+      return;
+    }
+
+    let rotation = parseFloat(
+      document.getElementById(`rotation-${label}`).value,
+    );
+    if (isNaN(rotation)) {
+      rotation = 0;
+    }
+
+    if (shape === "button") {
+      let diameter = parseFloat(
+        document.getElementById(`diameter-${label}`).value,
+      );
+      if (isNaN(diameter)) {
+        return;
+      }
+      configuration.buttons[label] = {
+        x: x,
+        y: y,
+        diameter: diameter,
         thickness: 2,
         bevel: true,
         mount: {
@@ -38,9 +67,17 @@ function saveConfigurationToJson() {
         },
       };
     } else {
-      configuration.keys[_buttonLabels[i]] = {
-        x: document.getElementById(`x-${i}`).value,
-        y: document.getElementById(`y-${i}`).value,
+      let width = parseFloat(document.getElementById(`width-${label}`).value);
+      let height = parseFloat(document.getElementById(`height-${label}`).value);
+
+      if (isNaN(width) || isNaN(height)) {
+        return;
+      }
+
+      configuration.keys[label] = {
+        x: x,
+        y: y,
+        rotation: rotation,
         bevel: true,
         mount: {
           type: "MX",
@@ -54,33 +91,14 @@ function saveConfigurationToJson() {
           base: 18,
         },
         dimensions: {
-          width: document.getElementById(`width-${i}`).value / 12,
-          length: document.getElementById(`height-${i}`).value / 18,
+          width: width / 12,
+          length: height / 18,
           wall_height: 8,
           thickness: 1,
         },
       };
     }
-  }
-
-  // LCD configuration
-  if (currentLCD) {
-    configuration.base["lcd_screen"] = {};
-    configuration.base.lcd_screen = {
-      x: currentLCD.x,
-      y: currentLCD.y,
-      rounded: true,
-    };
-  }
-  // USB configuration
-  if (arrowElement) {
-    configuration.base["usb_c"] = {};
-    configuration.base["usb_c"]["location"] = {
-      x: arrowElement.x,
-      y: arrowElement.y,
-      z: 25,
-    };
-  }
+  });
 
   // Convert to JSON string
   let jsonString = JSON.stringify(configuration);
@@ -92,7 +110,7 @@ function saveConfigurationToJson() {
   return configuration;
 }
 
-function saveConfiguration() {
+export function saveConfiguration() {
   const configuration = saveConfigurationToJson();
   const jsonString = JSON.stringify(configuration, null, 2); // Formatting JSON for readability
 
