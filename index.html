@@ -1,108 +1,141 @@
 <!doctype html>
 <html lang="en">
-<head>
+  <head>
     <!-- Metadata -->
-    <meta charset="UTF-8"/>
-    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-    <meta content="Visualiser and JSON generator for ControllerForge" name="description"/>
-    <meta content="Jack Burnett" name="author"/>
-    <meta content="ControllerForge, Visualiser, Controller, Forge" name="keywords"/>
+    <meta charset="UTF-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <meta
+      content="Visualiser and JSON generator for ControllerForge"
+      name="description"
+    />
+    <meta content="Jack Burnett" name="author" />
+    <meta
+      content="ControllerForge, Visualiser, Controller, Forge"
+      name="keywords"
+    />
     <!-- HTML Title -->
     <title>ControllerForge Visualiser</title>
     <!-- Bootstrap CSS -->
-    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet"/>
+    <link
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
     <!-- Custom CSS -->
-    <link href="styles.css" rel="stylesheet"/>
+    <link href="styles.css" rel="stylesheet" />
     <!-- Favicon -->
-    <link href="Visualiser.png" rel="icon" type="image/x-icon"/>
-</head>
-<body>
-<div class="container-fluid">
-    <h1 class="text-center my-4">ControllerForge Visualiser</h1>
+    <link href="Visualiser.png" rel="icon" type="image/x-icon" />
+  </head>
+  <body>
+    <div class="container-fluid">
+      <h1 class="text-center my-4">ControllerForge Visualiser</h1>
 
-    <!-- Row for canvas and base options -->
-    <div class="row">
+      <!-- Row for canvas and base options -->
+      <div class="row">
         <!-- Canvas Container -->
         <div class="col-lg-8 border rounded p-4">
-            <h2 class="text-center my-4">Controller</h2>
-            <div class="mt-4 mx-auto" id="canvas"></div>
+          <h2 class="text-center my-4">Controller</h2>
+          <div class="mt-4 mx-auto" id="canvas"></div>
         </div>
         <!-- TODO: Align Buttons-->
         <div class="col-lg-4 border rounded p-4">
-            <h2 class="text-center my-4">Base Size</h2>
-            <form class="form-inline" id="baseSizeForm">
-                <div class="form-group col-sm-4 col-md-4 col-lg-12">
-                    <label class="mr-2" for="baseWidth">Base Width:</label>
-                    <input class="form-control" id="baseWidth" placeholder="Canvas base width (mm)" type="number"
-                           value="215"/>
-                </div>
-                <div class="form-group col-sm-4 col-md-4 col-lg-12">
-                    <label class="mr-2" for="baseHeight">Base Height:</label>
-                    <input class="form-control" id="baseHeight" placeholder="Canvas base height (mm)" type="number"
-                           value="120"/>
-                </div>
-                <div class="form-group col-sm-4 col-md-4 col-lg-12">
-                    <label class="text-center mr-2" for="zoomFactor">Zoom Factor:</label>
-                    <input class="form-control" id="zoomFactor" placeholder="Zoom factor" type="number" value="1"/>
-                </div>
-                <div class="col-12 mt-2">
-                    <button class="btn btn-primary" id="baseButton" type="button">Configure Base</button>
-                </div>
-            </form>
+          <h2 class="text-center my-4">Base Size</h2>
+          <form class="form-inline" id="baseSizeForm">
+            <div class="form-group col-sm-4 col-md-4 col-lg-12">
+              <label class="mr-2" for="baseWidth">Base Width:</label>
+              <input
+                class="form-control"
+                id="baseWidth"
+                placeholder="Canvas base width (mm)"
+                type="number"
+                value="215"
+              />
+            </div>
+            <div class="form-group col-sm-4 col-md-4 col-lg-12">
+              <label class="mr-2" for="baseHeight">Base Height:</label>
+              <input
+                class="form-control"
+                id="baseHeight"
+                placeholder="Canvas base height (mm)"
+                type="number"
+                value="120"
+              />
+            </div>
+            <div class="form-group col-sm-4 col-md-4 col-lg-12">
+              <label class="text-center mr-2" for="zoomFactor"
+                >Zoom Factor:</label
+              >
+              <input
+                class="form-control"
+                id="zoomFactor"
+                placeholder="Zoom factor"
+                type="number"
+                value="1"
+              />
+            </div>
+            <div class="col-12 mt-2">
+              <button class="btn btn-primary" id="baseButton" type="button">
+                Configure Base
+              </button>
+            </div>
+          </form>
         </div>
-    </div>
+      </div>
 
-    <!-- Save and Load Configuration Buttons -->
-    <div class="row text-center mt-4">
+      <!-- Save and Load Configuration Buttons -->
+      <div class="row text-center mt-4">
         <div class="col-12 col-sm-6 mb-2">
-            <button class="btn btn-success" type="button" id="saveButton">Save Configuration</button>
+          <button class="btn btn-success" type="button" id="saveButton">
+            Save Configuration
+          </button>
         </div>
         <!-- Custom file input button -->
         <div class="col-12 col-sm-6">
-            <label class="custom-file-upload" for="fileInput">
-                Load Configuration
-            </label>
-            <!-- Hidden file input -->
-            <input accept=".json" class="file-input" id="fileInput" type="file"/>
+          <label class="custom-file-upload" for="fileInput">
+            Load Configuration
+          </label>
+          <!-- Hidden file input -->
+          <input accept=".json" class="file-input" id="fileInput" type="file" />
         </div>
-    </div>
-    <hr/>
+      </div>
+      <hr />
 
-    <!-- Button Forms -->
-    <form id="buttonForm">
+      <!-- Button Forms -->
+      <form id="buttonForm">
         <h2 class="text-center my-4">Buttons and Keys</h2>
-        <!-- TODO: Move below after testing -->
-        <div class="text-center">
-            <button class="btn btn-primary" id="plotButton" type="button">Plot Buttons</button>
-        </div>
         <div class="row" id="buttonInputsContainer">
-            <!-- Button input fields are added using buttons.js -->
+          <!-- Button input fields are added using buttons.js -->
         </div>
+        <div class="text-center">
+          <button class="btn btn-primary" id="plotButton" type="button">
+            Plot Buttons
+          </button>
+        </div>
+      </form>
+      <hr />
 
-    </form>
-    <hr/>
-
-    <!-- Components Forms -->
-    <form id="componentsForms">
+      <!-- Components Forms -->
+      <form id="componentsForms">
         <h2 class="text-center my-4">Additional Components</h2>
         <div class="row" id="componentsContainer">
-            <!-- Component input fields are added using components.js -->
+          <!-- Component input fields are added using components.js -->
         </div>
         <div class="text-center">
-            <button class="btn btn-primary" id="plotComponents" type="button">Plot Components</button>
+          <button class="btn btn-primary" id="plotComponents" type="button">
+            Plot Components
+          </button>
         </div>
-    </form>
-    <hr/>
-</div>
+      </form>
+      <hr />
+    </div>
 
-<!-- Bootstrap, JS, and dependencies -->
-<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-<script src="scripts/canvas.js"></script>
-<script src="scripts/save.js"></script>
-<script src="scripts/buttons.js"></script>
-<script src="scripts/components.js"></script>
-<script src="scripts/index.js" type="module"></script>
-</body>
+    <!-- Bootstrap, JS, and dependencies -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="scripts/canvas.js"></script>
+    <script src="scripts/save.js"></script>
+    <script src="scripts/buttons.js"></script>
+    <script src="scripts/components.js"></script>
+    <script src="scripts/index.js" type="module"></script>
+  </body>
 </html>
