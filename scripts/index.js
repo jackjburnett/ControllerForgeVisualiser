@@ -2,6 +2,7 @@ import { initializeButtons } from "./buttons.js";
 import { initializeComponents } from "./components.js";
 import { plotButtons, applyBaseSizeAndZoom } from "./canvas.js";
 import { saveConfiguration } from "./save.js";
+import { loadConfiguration } from "./load.js";
 
 // Initialize the form and set up event listeners
 function initialize() {
@@ -18,4 +19,7 @@ document.getElementById("plotButton").addEventListener("click", plotButtons);
 document
   .getElementById("saveButton")
   .addEventListener("click", saveConfiguration);
+document
+  .getElementById("fileInput")
+  .addEventListener("change", loadConfiguration);
 // document.getElementById("plotComponents").addEventListener("click", plotComponents);
