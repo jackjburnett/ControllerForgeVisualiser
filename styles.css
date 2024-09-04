@@ -10,7 +10,6 @@ body{
   font-family: 'Lexend Deca', serif;
   background-color: light-dark(#FBF9F6, #0B1D26);
   color: light-dark(#204B57, #F9A20C);
-
 }
 
 #canvas {
@@ -75,4 +74,3 @@ body{
   box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075); /* Maintain shadow on focus */
   outline: 0; /* Remove default focus outline */
 }
-
