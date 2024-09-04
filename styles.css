@@ -1,5 +1,20 @@
+@font-face {
+  font-family: 'Lexend Deca'; /* Name your font family */
+  src: url('LexendDeca.ttf'); /* Locate the .ttf file within your directory*/
+}
+:root {
+  color-scheme: light dark;
+}
+
+body{
+  font-family: 'Lexend Deca', serif;
+  background-color: light-dark(#FBF9F6, #0B1D26);
+  color: light-dark(#204B57, #F9A20C);
+
+}
+
 #canvas {
-  border: 1px solid #000;
+  border: 1px solid light-dark(#0B1D26, #FBF9F6);
   position: relative;
   margin-top: 20px;
 }
@@ -7,15 +22,15 @@
 .shape {
   position: absolute;
   background-color: #eee; /* Background color for visibility */
-  border: 1px solid #333; /* Border for visibility */
+  border: 1px solid light-dark(#0B1D26, #FBF9F6); /* Border for visibility */
 }
 
 .square {
-  border: 1px solid #000;
+  border: 1px solid light-dark(#0B1D26, #FBF9F6);
 }
 
 .circle {
-  border: 1px solid #000;
+  border: 1px solid light-dark(#0B1D26, #FBF9F6);
   border-radius: 50%;
 }
 
@@ -26,26 +41,7 @@
 .LCD {
   position: absolute;
   background-color: #ccc; /* Add your desired background color */
-  border: 1px solid #000;
-}
-
-.usb-arrow {
-  position: absolute;
-  top: 0; /* Adjust this value if needed */
-  left: 0; /* Adjust this value if needed */
-  width: 20px; /* Adjust this value based on the width of your arrow */
-}
-
-.usb-arrow::after {
-  content: "";
-  position: absolute;
-  top: 100%; /* Adjust this value to position arrow relative to 'USB' */
-  left: 50%;
-  width: 0;
-  height: 0;
-  border: 10px solid transparent;
-  border-top-color: #000;
-  transform: translateX(-50%);
+  border: 1px solid light-dark(#0B1D26, #FBF9F6);
 }
 
 /* Hide the default file input text */
@@ -63,8 +59,7 @@
   border-radius: 0.25rem;
   cursor: pointer;
   text-align: center;
-  border: 1px solid transparent;
-  border-color: #007bff;
+  border: 1px solid #0B1D26;
   background-color: #007bff;
   color: #fff;
   box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
@@ -73,10 +68,11 @@
 
 .custom-file-upload:hover {
   background-color: #0056b3; /* Darker background color on hover */
-  border-color: #004085; /* Darker border color on hover */
+  border-color: #0B1D26; /* Darker border color on hover */
 }
 
 .custom-file-upload:focus {
   box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075); /* Maintain shadow on focus */
   outline: 0; /* Remove default focus outline */
 }
+
