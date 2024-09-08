@@ -2,7 +2,7 @@ import _buttonLabels from "./_buttonLabels.js";
 
 function createButtonInput(label) {
   const div = document.createElement("div");
-  div.className = "col-sm-6 col-md-4 col-lg-3 col-xl-2 button-input";
+  div.className = "col-sm-6 col-md-4 col-lg-3 col-xl-2 button-input mb-3";
   div.innerHTML = `
         <div class="card">
             <div class="card-body">
