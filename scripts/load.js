@@ -91,3 +91,7 @@ export function loadConfiguration(event) {
   // Read the file as text
   reader.readAsText(file);
 }
+
+export function loadHitbox(event) {}
+
+export function loadMixbox(event) {}

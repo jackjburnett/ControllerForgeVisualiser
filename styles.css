@@ -13,6 +13,11 @@ body {
     color: light-dark(#204B57, #F9A20C);
 }
 
+a {
+    font-family: 'Lexend Deca', serif;
+    color: light-dark(#204B57, #F9A20C);
+}
+
 #canvas {
     border: 1px solid light-dark(#0B1D26, #FBF9F6);
     position: relative;
@@ -74,4 +79,12 @@ body {
 .custom-file-upload:focus {
     box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075); /* Maintain shadow on focus */
     outline: 0; /* Remove default focus outline */
+}
+
+.rotate-icon {
+    transition: transform 0.3s ease;
+}
+
+.rotate-icon.down {
+    transform: rotate(180deg);
 }
