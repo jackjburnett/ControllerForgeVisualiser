@@ -64,7 +64,7 @@ a {
     border-radius: 0.25rem;
     cursor: pointer;
     text-align: center;
-    border: 1px solid #0B1D26;
+    border: 1px solid #007bff;
     background-color: #007bff;
     color: #fff;
     box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
@@ -73,7 +73,7 @@ a {
 
 .custom-file-upload:hover {
     background-color: #0056b3; /* Darker background color on hover */
-    border-color: #0B1D26; /* Darker border color on hover */
+    border-color: #0056b3; /* Darker border color on hover */
 }
 
 .custom-file-upload:focus {
@@ -87,4 +87,9 @@ a {
 
 .rotate-icon.down {
     transform: rotate(180deg);
+}
+
+.card {
+    background: light-dark(#FBF9F6, #0B1D26);
+    border: 1px solid light-dark(#0B1D26, #FBF9F6);
 }
